@@ -16,14 +16,14 @@ delete without owner approval.
 
 ## Done
 - [x] Scaffold Next.js 16 + TypeScript + Tailwind v4 (App Router, `src/`)
-- [x] Deps: framer-motion, clsx, lucide-react, next-themes
+- [x] Deps: clsx, lucide-react, next-themes (framer-motion removed — see below)
 - [x] Theme system — **light is the fixed default** (OS preference not followed),
       manual light/dark toggle; azure/navy palette, RTL Hebrew
 - [x] Fonts: **Rubik** (display, Hebrew+Latin) + Heebo (body); no uppercase /
       wide-tracking on Hebrew headings
 - [x] Layout: sticky Header, Footer, sticky mobile "Order on WhatsApp" bar,
       desktop floating WhatsApp button
-- [x] Cart store: React context + reducer + localStorage (`fki_cart_v1`)
+- [x] Cart store: React context + reducer + localStorage (`goalix_cart_v1`)
 - [x] WhatsApp order-message builder + `wa.me` deep link
 - [x] Catalog access layer tolerant of an empty/partial `products.json`
 - [x] Pages: `/`, `/shop`, `/team/[id]`, `/product/[kitId]`, `/deals`, `/cart`,
@@ -61,6 +61,51 @@ delete without owner approval.
 - [x] Single price format (`formatPrice`) shared by UI **and** WhatsApp messages
 - [x] Empty-state wording made shopper-friendly (no "אין נתונים עדיין")
 
+## Done — production-readiness pass (empty-catalog storefront)
+- [x] `site.url` is env-driven (`NEXT_PUBLIC_SITE_URL`, see `.env.example`);
+      local-dev fallback `http://localhost:3000` — no fake production domain
+- [x] `/cart` removed from `sitemap.ts` (it is noindex)
+- [x] Goalix icons: `src/app/icon.svg` (favicon), `apple-icon.tsx`,
+      `/icons/icon-192.png` + `/icons/icon-512.png` (manifest, via `next/og`);
+      deleted the create-next-app `favicon.ico` and the 5 template SVGs in
+      `public/`
+- [x] `public/images/README.md` → `IMAGES.md` at repo root (no longer served)
+- [x] Security headers in `next.config.ts` (nosniff, X-Frame-Options SAMEORIGIN,
+      Referrer-Policy, Permissions-Policy, HSTS) + `poweredByHeader: false`
+- [x] `data-scroll-behavior="smooth"` on `<html>` (no smooth-scroll on route
+      transitions)
+- [x] Removed `border-radius` from the global `:focus-visible` rule
+- [x] Removed `framer-motion`; `Reveal` is now IntersectionObserver + CSS,
+      reduced-motion-safe, never hides above-the-fold / no-JS content
+- [x] Mobile menu: Escape + outside-tap + route-change all close it
+- [x] Footer links are ≥44px tap targets on mobile; contact split into separate
+      WhatsApp / SMS / email links
+- [x] `EmptyState` restyled solid (consistent with `ComingSoon`)
+- [x] Mobile Goalix logo/header tap target ≥44px
+- [x] Search input upgraded to a proper combobox (`role`, `aria-expanded`,
+      `aria-controls`, `aria-activedescendant`; `role="option"` items)
+- [x] `localStorage` key `fki_cart_v1` → `goalix_cart_v1`
+- [x] Fonts: Hebrew subset preloaded; Rubik (display) `preload: false`
+- [x] `AGENTS.md` / `CLAUDE.md` untracked + gitignored (machine-local tooling)
+- [x] Removed obsolete `<meta name="keywords">`
+- [x] Consistent `theme-color: #ffffff` (matches forced-light default)
+- [x] 404 page: `title: "הדף לא נמצא"` + `robots: noindex`
+
+## Blockers before REAL catalog launch (deferred from the audit)
+- [ ] **P1-7 · Search / catalog client bundle.** `SearchAutocomplete` (global
+      header) imports `searchCatalog` from `lib/catalog.ts`, which statically
+      imports `products.json` / `deals.json` / `reviews.json` /
+      `bestsellers.json`. Harmless while empty, but once `products.json` holds
+      the real catalog the whole thing ships in the client bundle on every page.
+      Fix before catalog launch: a build-time minimal search index (id / name /
+      team / league), or a route handler / server action; stop `catalog.ts`
+      being reachable from a client component.
+- [ ] **P1-8 · Real dialog for `FilterPanel` drawer + `ProductGallery` zoom.**
+      Both are plain `<div>`s: no `role="dialog"` / `aria-modal`, no focus trap,
+      no Escape, no body scroll-lock, no focus restoration. Unreachable while the
+      catalog is empty, so not a blocker for *this* deploy — but must be a proper
+      dialog before product pages go live.
+
 ## Blocked — waiting on owner data (do NOT fill by guesswork)
 - [ ] **Full catalog** — complete `src/data/products.json` (teams, kits, prices,
       `sizes`, `versions`, `season`). Until then every catalog surface shows the
@@ -78,15 +123,16 @@ delete without owner approval.
       then those points stay as neutral deferrals.
 - [ ] **Social links** — Instagram / Facebook / TikTok in `src/config/site.ts`
       (nothing renders while empty).
-- [ ] **Production URL** — set `site.url` in `src/config/site.ts` before deploy.
+- [ ] **Production URL** — set `NEXT_PUBLIC_SITE_URL` in the host's env before
+      deploy (`site.hasRealUrl` is `false` until then; canonicals/sitemap/OG use
+      the localhost fallback).
 - [ ] **Address** — add to `/contact` + JSON-LD if the business has a public one.
 
 ## After data arrives
 - [ ] Load real `products.json`; verify catalog, filters, team pages, product
       pages, search autocomplete
-- [ ] Regenerate `public/images/README.md` checklist from the real data
+- [ ] Regenerate `IMAGES.md` checklist from the real data (`npm run images:manifest`)
 - [ ] Verify the WhatsApp order message end-to-end with a real multi-item cart
 - [ ] Lighthouse mobile pass (performance, a11y, SEO)
-- [ ] Real favicon / PWA icons (192, 512) — manifest currently points only at
-      `favicon.ico`
-- [ ] Swap the `opengraph-image` gradient for brand artwork if provided
+- [ ] Swap the `opengraph-image` gradient / `brand-icon` monogram for real brand
+      artwork if the owner provides it

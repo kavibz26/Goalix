@@ -18,12 +18,7 @@ function Stars({ rating }: { rating: number }) {
 
 export function ReviewList({ reviews }: { reviews: Review[] }) {
   if (reviews.length === 0) {
-    return (
-      <EmptyState
-        title="אין עדיין ביקורות על החולצה הזו"
-        hint="ביקורות אמיתיות יתווספו כאן."
-      />
-    );
+    return <EmptyState title="עדיין אין ביקורות על החולצה הזו." />;
   }
 
   return (

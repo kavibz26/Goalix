@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { SearchAutocomplete } from "@/components/shop/SearchAutocomplete";
@@ -22,12 +22,37 @@ export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
 
+  // Close the mobile menu on route change (also handled per-link, but this
+  // covers browser back/forward). Escape / outside-tap are handled below.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setMenuOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    const onPointer = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+    };
+  }, [menuOpen]);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur"
+    >
       <Container className="flex h-16 items-center gap-3">
         <button
           type="button"
@@ -41,7 +66,7 @@ export function Header() {
 
         <Link
           href="/"
-          className="flex items-center gap-2 font-display text-xl font-extrabold"
+          className="flex min-h-11 items-center gap-2 pe-1 font-display text-xl font-extrabold"
           aria-label="Goalix — לדף הבית"
         >
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-azure-400 to-azure-700 text-sm font-black text-white">

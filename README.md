@@ -9,7 +9,8 @@ order is finalised in WhatsApp with a pre-filled message.
 ## Stack
 - Next.js 16 (App Router) · TypeScript · Tailwind CSS v4
 - `next-themes` — light is the fixed default, manual light/dark toggle
-- `framer-motion` micro-animations · cart state in React context + `localStorage`
+- `lucide-react` icons · cart state in React context + `localStorage`
+- Scroll-reveal is a tiny IntersectionObserver + CSS effect (no animation lib)
 - Hebrew / RTL first
 
 ## Develop
@@ -19,24 +20,32 @@ npm run dev      # http://localhost:3000
 npm run build
 ```
 
+## Environment
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | **production** | Public origin (scheme + host, no trailing slash). Drives canonical URLs, `sitemap.xml`, `robots.txt`, Open Graph and JSON-LD. Falls back to `http://localhost:3000` in development only. |
+
+Copy `.env.example` → `.env.local` for local overrides.
+
 ## Data — owner supplied, never invented
 All catalog content lives in `src/data/` and is provided by the site owner. The
-app renders clean empty states until real data is in place.
+app renders polished "coming soon" states until real data is in place.
 
 | File | Purpose | Ships as |
 |------|---------|----------|
-| `src/data/products.json` | teams, kits, prices, sizes, versions, season | skeleton (awaiting full file) |
+| `src/data/products.json` | teams, kits, prices, sizes, versions, season | empty skeleton |
 | `src/data/deals.json` | bundle deals | `[]` |
 | `src/data/reviews.json` | reviews keyed by kitId | `{}` |
 | `src/data/bestsellers.json` | ordered kitId list | `[]` |
 
 Site-level config (brand name, WhatsApp/SMS number, contact emails, social
-links, production URL): `src/config/site.ts`.
+links): `src/config/site.ts`.
 
-Images: real photos only, under `public/images/` — see
-`public/images/README.md`. Run `npm run images:manifest` after loading the real
-`products.json` to generate a per-file checklist.
+Images: real photos only, dropped into `public/images/` — see [IMAGES.md](./IMAGES.md).
+Run `npm run images:manifest` after loading the real `products.json` to generate
+a per-file checklist.
 
 ## Status
-See [TASKS.md](./TASKS.md) for build progress and the list of owner-supplied
-data still outstanding.
+See [TASKS.md](./TASKS.md) for progress, the owner-supplied data still
+outstanding, and the two items that must be done before the real catalog launch.

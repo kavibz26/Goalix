@@ -13,7 +13,7 @@ import {
 } from "react";
 import type { Version } from "@/lib/types";
 
-const STORAGE_KEY = "fki_cart_v1";
+const STORAGE_KEY = "goalix_cart_v1";
 
 export interface CartItem {
   /** Stable identity for a configured line (kit + size + version + name + number). */

@@ -77,7 +77,6 @@ body {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
 /* Skip-to-content link — visible only when focused. */
@@ -98,6 +97,21 @@ body {
   transform: translateY(0);
 }
 
+/* Scroll-reveal (see components/Reveal.tsx). The hidden state is only applied
+   by JS to elements that start below the fold, so no-JS / above-the-fold
+   content is never hidden. */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal-shown {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
 /* Respect reduced-motion for the scroll / hover micro-animations. */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -107,6 +121,10 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
   }
 }
 

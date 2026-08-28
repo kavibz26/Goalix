@@ -1,7 +1,8 @@
-# Images
+# Images (contributor note — not published)
 
-Drop **real** kit photos here. No placeholders, no stock images — a missing file
-renders a tidy "תמונה בקרוב" (image coming soon) state on the site.
+Drop **real** kit photos into `public/images/`. No placeholders, no stock
+images — a missing file renders a tidy "תמונה בקרוב" (image coming soon) state
+on the site.
 
 ## Expected layout
 

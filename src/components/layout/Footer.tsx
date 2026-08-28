@@ -20,33 +20,38 @@ const COLS = [
   },
 ];
 
+// Tap-target-friendly link on mobile (~40px tall via block + py).
+const footLink = "block py-2.5 hover:text-foreground";
+
 export function Footer() {
   return (
     <footer className="mt-16 border-t border-border bg-surface">
       <Container className="grid gap-8 py-10 sm:grid-cols-3">
         <div>
-          <div className="font-display text-lg font-bold">
-            {site.name}
-          </div>
+          <div className="font-display text-lg font-bold">{site.name}</div>
           <p className="mt-2 max-w-xs text-sm text-muted">{site.description}</p>
-          <ul className="mt-3 space-y-1.5 text-sm">
+          <ul className="mt-2 text-sm">
             <li>
-              וואטסאפ / SMS:{" "}
               <a
                 href={`https://wa.me/${site.whatsappNumber}`}
-                className="font-semibold text-accent"
+                className={`${footLink} font-semibold text-accent`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {site.whatsappDisplay}
+                וואטסאפ · {site.whatsappDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.contact.smsHref}
+                className={`${footLink} font-semibold text-accent`}
+              >
+                SMS · {site.whatsappDisplay}
               </a>
             </li>
             {site.contact.emails.map((email) => (
               <li key={email}>
-                <a
-                  href={`mailto:${email}`}
-                  className="text-accent hover:underline"
-                >
+                <a href={`mailto:${email}`} className={`${footLink} text-accent`}>
                   {email}
                 </a>
               </li>
@@ -57,10 +62,10 @@ export function Footer() {
         {COLS.map((col) => (
           <div key={col.title}>
             <h3 className="text-sm font-semibold">{col.title}</h3>
-            <ul className="mt-3 space-y-2 text-sm text-muted">
+            <ul className="mt-1 text-sm text-muted">
               {col.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="hover:text-foreground">
+                  <Link href={l.href} className={footLink}>
                     {l.label}
                   </Link>
                 </li>

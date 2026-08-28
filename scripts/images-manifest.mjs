@@ -1,5 +1,6 @@
-// Generates public/images/README.md — a checklist of every image path the
-// catalog references. Run after updating src/data/products.json.
+// Generates IMAGES.md — a checklist of every image path the catalog references.
+// Run after updating src/data/products.json. Output stays out of public/ so it
+// is never served.
 //
 //   npm run images:manifest
 
@@ -8,7 +9,7 @@ import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
 const productsPath = resolve(root, "src/data/products.json");
-const outPath = resolve(root, "public/images/README.md");
+const outPath = resolve(root, "IMAGES.md");
 
 const data = JSON.parse(readFileSync(productsPath, "utf8"));
 const teams = Array.isArray(data.teams) ? data.teams : [];

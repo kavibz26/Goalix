@@ -8,18 +8,23 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileWhatsAppBar } from "@/components/layout/MobileWhatsAppBar";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 
+// Body font — Hebrew-first, so only the Hebrew subset is preloaded; the Latin
+// subset still loads on demand for the few English strings.
 const heebo = Heebo({
-  subsets: ["latin", "hebrew"],
+  subsets: ["hebrew", "latin"],
   variable: "--font-heebo",
   display: "swap",
 });
 
-// Display face — covers Hebrew and Latin, so headings render in one voice.
+// Display face — covers Hebrew and Latin so headings render in one voice.
+// Not preloaded (headings are small relative to body copy); it swaps in from
+// the Heebo fallback with `display: "swap"`.
 const rubik = Rubik({
-  subsets: ["latin", "hebrew"],
+  subsets: ["hebrew", "latin"],
   weight: ["500", "600", "700", "800"],
   variable: "--font-rubik",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -30,14 +35,6 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
-  keywords: [
-    "חולצות כדורגל",
-    "חולצות קבוצות",
-    "חולצות נבחרות",
-    "football kits",
-    "Goalix",
-    "2025/26",
-  ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -56,10 +53,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#060f1e" },
-  ],
+  // The site renders light regardless of OS preference, so the browser chrome
+  // is always white to match.
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -70,6 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang={site.lang}
       dir={site.dir}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${heebo.variable} ${rubik.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased">

@@ -55,9 +55,13 @@ export function EmptyState({
   hint?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-dashed border-border bg-surface/60 px-6 py-12 text-center">
-      <p className="font-medium">{title}</p>
-      {hint ? <p className="mt-1 text-sm text-muted">{hint}</p> : null}
+    <div className="rounded-2xl border border-border bg-surface px-6 py-12 text-center">
+      <p className="font-semibold">{title}</p>
+      {hint ? (
+        <p className="mx-auto mt-1.5 max-w-sm text-sm leading-relaxed text-muted">
+          {hint}
+        </p>
+      ) : null}
     </div>
   );
 }

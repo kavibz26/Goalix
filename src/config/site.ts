@@ -1,10 +1,24 @@
 // Site-level configuration. Brand name and contact details come from the owner.
 // Anything not yet supplied is tracked in TASKS.md — never shown to customers.
 
+/**
+ * Public origin of the site (no trailing slash). Drives canonical URLs,
+ * sitemap, robots, Open Graph and JSON-LD.
+ *
+ * Production MUST set `NEXT_PUBLIC_SITE_URL` (see .env.example) — there is no
+ * real domain yet, so the fallback below is a local-development placeholder
+ * only, never a claimed production URL. This is tracked in TASKS.md.
+ */
+const DEV_FALLBACK_URL = "http://localhost:3000";
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || DEV_FALLBACK_URL
+).replace(/\/$/, "");
+
 export const site = {
   name: "Goalix",
-  /** Public-facing URL — update before deploy (tracked in TASKS.md). */
-  url: "https://goalix.example",
+  url: siteUrl,
+  /** True once a real production origin has been configured via env. */
+  hasRealUrl: Boolean(process.env.NEXT_PUBLIC_SITE_URL),
   description: "Goalix — חנות חולצות כדורגל. קנייה מהירה, הזמנה בוואטסאפ.",
   locale: "he_IL",
   dir: "rtl" as const,

@@ -4,11 +4,12 @@ import { getAllProducts, getTeams } from "@/lib/catalog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url.replace(/\/$/, "");
+
+  // Indexable pages only. /cart is intentionally excluded — it is noindex.
   const staticPaths = [
     "",
     "/shop",
     "/deals",
-    "/cart",
     "/faq",
     "/shipping-returns",
     "/contact",
