@@ -1,0 +1,11 @@
+{
+  "_todo": "AWAITING COMPLETE products.json FROM SITE OWNER. Do not populate teams, kits, prices, sizes, seasons or versions by guesswork. Replace this whole file with the real data when provided.",
+  "siteName": "FootballKits-il",
+  "season": null,
+  "sizes": {
+    "Adults": [],
+    "Kids": []
+  },
+  "versions": [],
+  "teams": []
+}
