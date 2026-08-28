@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, Search, ShoppingBag, X, Zap } from "lucide-react";
 import { useCart } from "@/store/cart";
@@ -18,8 +19,12 @@ const NAV = [
 
 export function Header() {
   const { count, hydrated } = useCart();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
@@ -45,7 +50,15 @@ export function Header() {
 
         <nav className="ms-4 hidden items-center gap-5 text-sm font-medium md:flex">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="hover:text-accent">
+            <Link
+              key={n.href}
+              href={n.href}
+              aria-current={isActive(n.href) ? "page" : undefined}
+              className={cn(
+                "hover:text-accent",
+                isActive(n.href) && "text-accent underline underline-offset-8",
+              )}
+            >
               {n.label}
             </Link>
           ))}
@@ -98,7 +111,11 @@ export function Header() {
               key={n.href}
               href={n.href}
               onClick={() => setMenuOpen(false)}
-              className="min-h-12 border-b border-border/60 py-3 text-sm font-medium last:border-b-0"
+              aria-current={isActive(n.href) ? "page" : undefined}
+              className={cn(
+                "min-h-12 border-b border-border/60 py-3 text-sm font-medium last:border-b-0",
+                isActive(n.href) && "text-accent",
+              )}
             >
               {n.label}
             </Link>

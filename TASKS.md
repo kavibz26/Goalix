@@ -12,7 +12,7 @@ delete without owner approval.
 ## Done
 - [x] Scaffold Next.js 16 + TypeScript + Tailwind v4 (App Router, `src/`)
 - [x] Deps: framer-motion, clsx, lucide-react, next-themes
-- [x] Theme system (dark default + light), football palette, RTL Hebrew
+- [x] Theme system (light default + dark), azure/navy brand palette, RTL Hebrew
 - [x] Fonts: Oswald (display) + Heebo (body)
 - [x] Layout: sticky Header (logo, search, cart, theme), Footer, sticky mobile
       "Order on WhatsApp" bar
@@ -28,6 +28,23 @@ delete without owner approval.
 - [x] `KitImage` "תמונה בקרוב" (image coming soon) fallback — no fake mockups
 - [x] Empty data files: `deals.json` `[]`, `reviews.json` `{}`,
       `bestsellers.json` `[]`
+
+## Done — polish pass (empty-catalog storefront)
+- [x] Brand link-preview image `opengraph-image.tsx` (brand-only, azure gradient)
+- [x] `manifest.ts` web app manifest (theme colour, RTL/he)
+- [x] Organization + WebSite JSON-LD (with SearchAction) in root layout
+- [x] Accessibility: global `:focus-visible` ring, skip-to-content link,
+      `aria-current` on active nav
+- [x] Active-route highlighting in Header (desktop + mobile menu)
+- [x] `Reveal` scroll animation now a no-op under `prefers-reduced-motion`
+- [x] `shop/loading.tsx` + global `error.tsx` (team/product intentionally have
+      no `loading.tsx` — streaming would force a 200 on their `notFound()` 404s)
+- [x] Per-page canonical URLs; `keywords`; Twitter card; `/cart` set `noindex`
+- [x] `not-found` page gains a "כל החולצות" link
+- [x] Verified on running dev server: clean console, no horizontal scroll on
+      375px, filter drawer opens + updates URL, search shows empty result,
+      OG image renders as PNG, sitemap/robots/manifest valid, `/team/*` and
+      `/product/*` correctly return 404 for unknown ids
 
 ## Blocked — waiting on owner data (do NOT fill by guesswork)
 - [ ] **`src/data/products.json`** — full file. The brief's paste was truncated
@@ -57,3 +74,7 @@ delete without owner approval.
 - [ ] Verify WhatsApp message format end-to-end with a real multi-item cart
 - [ ] Lighthouse mobile pass (performance, a11y, SEO)
 - [ ] Owner review of copy + theme
+- [ ] Add real favicon / PWA icons (192, 512) — manifest currently points only
+      at `favicon.ico`
+- [ ] Swap `opengraph-image` gradient for a photo-based banner if the owner
+      provides brand artwork

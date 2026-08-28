@@ -8,6 +8,7 @@ import { site } from "@/config/site";
 export const metadata: Metadata = {
   title: "צור קשר",
   description: "דרכי יצירת קשר עם FootballKits-il.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

@@ -20,6 +20,7 @@ import type { AgeGroup, Version } from "@/lib/types";
 export const metadata: Metadata = {
   title: "כל החולצות",
   description: "עיון וסינון של כל חולצות הכדורגל בחנות FootballKits-il.",
+  alternates: { canonical: "/shop" },
 };
 
 export default async function ShopPage({

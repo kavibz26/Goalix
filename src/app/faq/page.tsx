@@ -5,6 +5,7 @@ import { TodoNotice } from "@/components/TodoNotice";
 export const metadata: Metadata = {
   title: "שאלות נפוצות",
   description: "שאלות ותשובות נפוצות על הזמנת חולצות כדורגל ב-FootballKits-il.",
+  alternates: { canonical: "/faq" },
 };
 
 // Questions are structural placeholders. Real answers to be supplied by the owner.

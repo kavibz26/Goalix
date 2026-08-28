@@ -27,14 +27,28 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  keywords: [
+    "חולצות כדורגל",
+    "חולצות קבוצות",
+    "חולצות נבחרות",
+    "football kits",
+    "FootballKits-il",
+    "2025/26",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: site.locale,
+    url: site.url,
     siteName: site.name,
     title: `${site.name} — חולצות כדורגל`,
     description: site.description,
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — חולצות כדורגל`,
+    description: site.description,
+  },
   robots: { index: true, follow: true },
 };
 
@@ -56,9 +70,47 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${heebo.variable} ${oswald.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  name: site.name,
+                  url: site.url,
+                  description: site.description,
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    contactType: "sales",
+                    telephone: `+${site.whatsappNumber}`,
+                    availableLanguage: ["he", "en"],
+                  },
+                },
+                {
+                  "@type": "WebSite",
+                  name: site.name,
+                  url: site.url,
+                  inLanguage: "he-IL",
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: `${site.url}/shop?q={search_term_string}`,
+                    "query-input": "required name=search_term_string",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
         <Providers>
+          <a href="#main" className="skip-link">
+            דלג לתוכן
+          </a>
           <Header />
-          <main className="flex-1 pb-24 md:pb-0">{children}</main>
+          <main id="main" className="flex-1 pb-24 md:pb-0">
+            {children}
+          </main>
           <Footer />
           <MobileWhatsAppBar />
         </Providers>

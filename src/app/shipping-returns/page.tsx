@@ -5,6 +5,7 @@ import { TodoNotice } from "@/components/TodoNotice";
 export const metadata: Metadata = {
   title: "משלוחים והחזרות",
   description: "מדיניות משלוחים, זמני אספקה והחזרות ב-FootballKits-il.",
+  alternates: { canonical: "/shipping-returns" },
 };
 
 export default function ShippingReturnsPage() {

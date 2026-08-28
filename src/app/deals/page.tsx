@@ -8,6 +8,7 @@ import { whatsappUrl } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "מבצעים",
   description: "מבצעי חבילות על חולצות כדורגל ב-FootballKits-il.",
+  alternates: { canonical: "/deals" },
 };
 
 export default function DealsPage() {
