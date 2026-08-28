@@ -59,21 +59,24 @@ export function FilterPanel({ options }: { options: FilterOptions }) {
     }
   };
 
-  const body = (
+  // `idScope` keeps the control ids unique between the desktop sidebar and the
+  // mobile drawer, which are both in the DOM at once for responsiveness.
+  const renderBody = (idScope: string) => (
     <div className="space-y-5">
       {FIELDS.map((field) => {
         const opts = valuesFor(field);
         const current = params.get(field) ?? "";
+        const id = `${idScope}-filter-${field}`;
         return (
           <div key={field}>
             <label
-              htmlFor={`filter-${field}`}
+              htmlFor={id}
               className="mb-1 block text-xs font-semibold text-muted"
             >
               {LABELS[field]}
             </label>
             <select
-              id={`filter-${field}`}
+              id={id}
               value={current}
               onChange={(e) => setParam(field, e.target.value)}
               className="min-h-11 w-full rounded-xl border border-border bg-surface-raised px-3 text-sm"
@@ -85,9 +88,6 @@ export function FilterPanel({ options }: { options: FilterOptions }) {
                 </option>
               ))}
             </select>
-            {opts.length === 0 ? (
-              <p className="mt-1 text-xs text-muted">אין נתונים עדיין</p>
-            ) : null}
           </div>
         );
       })}
@@ -98,7 +98,7 @@ export function FilterPanel({ options }: { options: FilterOptions }) {
           onClick={() => router.push("/shop", { scroll: false })}
           className="text-sm font-medium text-accent"
         >
-          נקה סינון ({activeCount})
+          ניקוי סינון ({activeCount})
         </button>
       ) : null}
     </div>
@@ -108,8 +108,8 @@ export function FilterPanel({ options }: { options: FilterOptions }) {
     <>
       {/* Desktop sidebar */}
       <aside className="hidden md:block">
-        <h2 className="mb-4 font-display text-lg font-bold uppercase">סינון</h2>
-        {body}
+        <h2 className="mb-4 font-display text-lg font-bold">סינון</h2>
+        {renderBody("d")}
       </aside>
 
       {/* Mobile trigger + drawer */}
@@ -128,6 +128,7 @@ export function FilterPanel({ options }: { options: FilterOptions }) {
             "fixed inset-0 z-50 transition",
             open ? "visible" : "invisible",
           )}
+          aria-hidden={!open}
         >
           <div
             className={cn(
@@ -138,21 +139,29 @@ export function FilterPanel({ options }: { options: FilterOptions }) {
           />
           <div
             className={cn(
-              "absolute inset-y-0 end-0 w-80 max-w-[85vw] overflow-y-auto bg-background p-5 shadow-xl transition-transform",
+              "absolute inset-y-0 end-0 flex w-80 max-w-[85vw] flex-col overflow-y-auto bg-background p-5 shadow-xl transition-transform",
               open ? "translate-x-0" : "translate-x-full rtl:-translate-x-full",
             )}
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="font-display text-lg font-bold uppercase">סינון</h2>
+              <h2 className="font-display text-lg font-bold">סינון</h2>
               <button
                 type="button"
-                aria-label="סגור"
+                aria-label="סגירת הסינון"
                 onClick={() => setOpen(false)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-lg"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
-            {body}
+            {renderBody("m")}
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="mt-6 min-h-12 rounded-xl bg-accent px-6 font-semibold text-accent-contrast"
+            >
+              הצגת התוצאות
+            </button>
           </div>
         </div>
       </div>

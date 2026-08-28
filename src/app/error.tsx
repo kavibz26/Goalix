@@ -17,7 +17,7 @@ export default function Error({
 
   return (
     <Container className="flex flex-col items-center gap-4 py-24 text-center">
-      <h1 className="font-display text-3xl font-bold uppercase">משהו השתבש</h1>
+      <h1 className="font-display text-3xl font-bold">משהו השתבש</h1>
       <p className="text-muted">אירעה שגיאה בטעינת הדף. אפשר לנסות שוב.</p>
       <div className="flex gap-3">
         <button

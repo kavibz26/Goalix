@@ -2,6 +2,7 @@
 // No payment on site — the order is completed in the WhatsApp chat.
 
 import { site } from "@/config/site";
+import { formatPrice } from "@/lib/format";
 import type { CartItem } from "@/store/cart";
 
 export interface OrderLineInput {
@@ -21,13 +22,13 @@ function formatLine(l: OrderLineInput): string {
       ? ` | "${[l.customName, l.customNumber].filter(Boolean).join(" ").trim()}"`
       : "";
   const lineTotal = l.qty * l.unitPrice;
-  return `- ${l.teamName} ${l.kitName} | Size ${l.size} | ${l.version}${custom} | x${l.qty} | ${lineTotal}${site.currency}`;
+  return `- ${l.teamName} ${l.kitName} | Size ${l.size} | ${l.version}${custom} | x${l.qty} | ${formatPrice(lineTotal)}`;
 }
 
 export function buildOrderMessage(lines: OrderLineInput[]): string {
   const body = lines.map(formatLine).join("\n");
   const total = lines.reduce((n, l) => n + l.qty * l.unitPrice, 0);
-  return `Hi, I want to order:\n${body}\nTotal: ${total}${site.currency}`;
+  return `Hi, I want to order:\n${body}\nTotal: ${formatPrice(total)}`;
 }
 
 export function cartToLines(items: CartItem[]): OrderLineInput[] {

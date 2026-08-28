@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Heebo, Oswald } from "next/font/google";
+import { Heebo, Rubik } from "next/font/google";
 import "./globals.css";
 import { site } from "@/config/site";
 import { Providers } from "@/components/Providers";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileWhatsAppBar } from "@/components/layout/MobileWhatsAppBar";
+import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 
 const heebo = Heebo({
   subsets: ["latin", "hebrew"],
@@ -13,9 +14,11 @@ const heebo = Heebo({
   display: "swap",
 });
 
-const oswald = Oswald({
-  subsets: ["latin"],
-  variable: "--font-oswald",
+// Display face — covers Hebrew and Latin, so headings render in one voice.
+const rubik = Rubik({
+  subsets: ["latin", "hebrew"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-rubik",
   display: "swap",
 });
 
@@ -32,7 +35,7 @@ export const metadata: Metadata = {
     "חולצות קבוצות",
     "חולצות נבחרות",
     "football kits",
-    "FootballKits-il",
+    "Goalix",
     "2025/26",
   ],
   alternates: { canonical: "/" },
@@ -67,7 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang={site.lang}
       dir={site.dir}
       suppressHydrationWarning
-      className={`${heebo.variable} ${oswald.variable} h-full`}
+      className={`${heebo.variable} ${rubik.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
         <script
@@ -83,8 +86,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                   description: site.description,
                   contactPoint: {
                     "@type": "ContactPoint",
-                    contactType: "sales",
+                    contactType: "customer support",
                     telephone: `+${site.whatsappNumber}`,
+                    email: site.contact.emails[0],
                     availableLanguage: ["he", "en"],
                   },
                 },
@@ -113,6 +117,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </main>
           <Footer />
           <MobileWhatsAppBar />
+          <FloatingWhatsApp />
         </Providers>
       </body>
     </html>

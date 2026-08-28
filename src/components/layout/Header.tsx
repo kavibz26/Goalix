@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, Search, ShoppingBag, X, Zap } from "lucide-react";
+import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { SearchAutocomplete } from "@/components/shop/SearchAutocomplete";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
@@ -31,21 +31,23 @@ export function Header() {
       <Container className="flex h-16 items-center gap-3">
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border md:hidden"
-          aria-label="תפריט"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border md:hidden"
+          aria-label={menuOpen ? "סגירת התפריט" : "פתיחת התפריט"}
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
 
-        <Link href="/" className="flex items-center gap-2 font-display text-lg font-bold tracking-wide uppercase">
-          <span className="inline-flex items-center gap-0.5 rounded-md bg-gradient-to-br from-azure-400 to-azure-700 px-1.5 py-0.5 text-white">
-            <Zap className="h-4 w-4" fill="currentColor" aria-hidden />
-            <span>FK</span>
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-display text-xl font-extrabold"
+          aria-label="Goalix — לדף הבית"
+        >
+          <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-azure-400 to-azure-700 text-sm font-black text-white">
+            G
           </span>
-          <span className="hidden sm:inline">
-            FootballKits<span className="text-accent">·IL</span>
-          </span>
+          <span>Goalix</span>
         </Link>
 
         <nav className="ms-4 hidden items-center gap-5 text-sm font-medium md:flex">
@@ -70,8 +72,9 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border lg:hidden"
-          aria-label="חיפוש"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border lg:hidden"
+          aria-label={searchOpen ? "סגירת החיפוש" : "פתיחת החיפוש"}
+          aria-expanded={searchOpen}
           onClick={() => setSearchOpen((v) => !v)}
         >
           <Search className="h-5 w-5" />
@@ -81,8 +84,12 @@ export function Header() {
 
         <Link
           href="/cart"
-          className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border"
-          aria-label="עגלת קניות"
+          className="relative inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border"
+          aria-label={
+            hydrated && count > 0
+              ? `עגלת קניות — ${count} פריטים`
+              : "עגלת קניות"
+          }
         >
           <ShoppingBag className="h-5 w-5" />
           {hydrated && count > 0 ? (
@@ -104,6 +111,9 @@ export function Header() {
           "overflow-hidden border-t border-border transition-[max-height] duration-300 md:hidden",
           menuOpen ? "max-h-72" : "max-h-0",
         )}
+        aria-hidden={!menuOpen}
+        // Keeps the collapsed links out of the tab order / screen-reader tree.
+        inert={!menuOpen}
       >
         <Container className="flex flex-col py-2">
           {NAV.map((n) => (

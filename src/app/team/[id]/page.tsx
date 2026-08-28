@@ -38,7 +38,7 @@ export default async function TeamPage({
       <p className="text-sm text-muted">
         {team.type === "national" ? "נבחרת" : team.league}
       </p>
-      <h1 className="font-display text-3xl font-bold uppercase sm:text-4xl">
+      <h1 className="font-display text-3xl font-bold sm:text-4xl">
         {team.name_he ?? team.name}
       </h1>
 

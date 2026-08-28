@@ -14,7 +14,7 @@ export function Hero({ hasImage }: { hasImage: boolean }) {
         <>
           <Image
             src="/images/hero.jpg"
-            alt="FootballKits-il — חולצות כדורגל לעונת 2025/26"
+            alt="Goalix — חולצות כדורגל"
             fill
             priority
             sizes="100vw"
@@ -33,10 +33,8 @@ export function Hero({ hasImage }: { hasImage: boolean }) {
         <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">
           עונת 2025/26
         </span>
-        <h1 className="font-display text-4xl font-bold tracking-wide uppercase sm:text-6xl">
+        <h1 className="font-display text-4xl font-bold sm:text-6xl">
           חולצות כדורגל
-          <br />
-          מקוריות במראה
         </h1>
         <p className="max-w-md text-sm text-white/85 sm:text-base">
           בית, חוץ ושלישית לכל הקבוצות הגדולות. בחירה, מידה, והזמנה בוואטסאפ תוך שתי
@@ -44,7 +42,7 @@ export function Hero({ hasImage }: { hasImage: boolean }) {
         </p>
         <Link
           href="/shop"
-          className="inline-flex min-h-13 items-center gap-2 rounded-xl bg-accent px-6 font-semibold text-accent-contrast transition-transform hover:scale-[1.02] active:scale-[0.99]"
+          className="inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 font-semibold text-accent-contrast transition-transform hover:scale-[1.02] active:scale-[0.99] sm:w-auto"
         >
           לחנות החולצות החדשות
           <ArrowLeft className="h-5 w-5 rtl:rotate-180" />

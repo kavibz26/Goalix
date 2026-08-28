@@ -1,80 +1,92 @@
-# FootballKits-il — TASKS
+# Goalix — TASKS
 
 Source of truth for build order. Check items off as completed. Do not reorder or
 delete without owner approval.
 
+> Repo folder, `package.json` name and the `.claude` dev-server id stay
+> `footballkits-il` / `footballkits-dev` for continuity. The customer-facing
+> brand is **Goalix** everywhere.
+
 ## Policy
 - **Zero invented data.** No team, kit, price, size, season, version, deal,
-  bestseller, review, image, or policy text is created by guesswork. Everything
-  comes from owner-supplied files. Missing data = a TODO here + a visible empty
-  state in the UI.
+  bestseller, review, image, or business/contact fact is created by guesswork.
+  Everything comes from the owner. Missing data = a TODO here + a polished,
+  shopper-friendly empty/coming-soon state in the UI (never "TODO", a filename,
+  or a source path shown to customers).
 
 ## Done
 - [x] Scaffold Next.js 16 + TypeScript + Tailwind v4 (App Router, `src/`)
 - [x] Deps: framer-motion, clsx, lucide-react, next-themes
-- [x] Theme system (light default + dark), azure/navy brand palette, RTL Hebrew
-- [x] Fonts: Oswald (display) + Heebo (body)
-- [x] Layout: sticky Header (logo, search, cart, theme), Footer, sticky mobile
-      "Order on WhatsApp" bar
+- [x] Theme system — **light is the fixed default** (OS preference not followed),
+      manual light/dark toggle; azure/navy palette, RTL Hebrew
+- [x] Fonts: **Rubik** (display, Hebrew+Latin) + Heebo (body); no uppercase /
+      wide-tracking on Hebrew headings
+- [x] Layout: sticky Header, Footer, sticky mobile "Order on WhatsApp" bar,
+      desktop floating WhatsApp button
 - [x] Cart store: React context + reducer + localStorage (`fki_cart_v1`)
-- [x] WhatsApp order-message builder + `wa.me` deep link (number 972555568418)
+- [x] WhatsApp order-message builder + `wa.me` deep link
 - [x] Catalog access layer tolerant of an empty/partial `products.json`
-- [x] Pages: `/`, `/shop` (filters + search), `/team/[id]`, `/product/[kitId]`,
-      `/deals`, `/cart`, `/faq`, `/shipping-returns`, `/contact`, `not-found`
+- [x] Pages: `/`, `/shop`, `/team/[id]`, `/product/[kitId]`, `/deals`, `/cart`,
+      `/faq`, `/shipping-returns`, `/contact`, `not-found`, `error`
 - [x] Product page: gallery w/ tap-zoom, version selector (drives price), size
       selector, name+number, quantity, Add to Cart, Order on WhatsApp, reviews
-- [x] SEO: per-route metadata, OpenGraph, `sitemap.ts`, `robots.ts`, Product
-      JSON-LD
-- [x] `KitImage` "תמונה בקרוב" (image coming soon) fallback — no fake mockups
+- [x] SEO: per-route metadata + canonicals, OpenGraph + brand OG image,
+      `sitemap.ts`, `robots.ts`, Organization/WebSite/Product/FAQ JSON-LD,
+      `manifest.ts`
+- [x] `KitImage` "תמונה בקרוב" fallback — no fake mockups
 - [x] Empty data files: `deals.json` `[]`, `reviews.json` `{}`,
       `bestsellers.json` `[]`
 
-## Done — polish pass (empty-catalog storefront)
-- [x] Brand link-preview image `opengraph-image.tsx` (brand-only, azure gradient)
-- [x] `manifest.ts` web app manifest (theme colour, RTL/he)
-- [x] Organization + WebSite JSON-LD (with SearchAction) in root layout
-- [x] Accessibility: global `:focus-visible` ring, skip-to-content link,
-      `aria-current` on active nav
-- [x] Active-route highlighting in Header (desktop + mobile menu)
-- [x] `Reveal` scroll animation now a no-op under `prefers-reduced-motion`
-- [x] `shop/loading.tsx` + global `error.tsx` (team/product intentionally have
-      no `loading.tsx` — streaming would force a 200 on their `notFound()` 404s)
-- [x] Per-page canonical URLs; `keywords`; Twitter card; `/cart` set `noindex`
-- [x] `not-found` page gains a "כל החולצות" link
-- [x] Verified on running dev server: clean console, no horizontal scroll on
-      375px, filter drawer opens + updates URL, search shows empty result,
-      OG image renders as PNG, sitemap/robots/manifest valid, `/team/*` and
-      `/product/*` correctly return 404 for unknown ids
+## Done — rebrand + review pass (Goalix)
+- [x] Rebrand FootballKits-il → **Goalix** across all customer-facing UI, meta,
+      OG image, manifest, JSON-LD, WhatsApp presets
+- [x] Contact: WhatsApp + SMS on `0559651785` (`972559651785`), emails
+      `lavibz123@gmail.com` / `lavibz269@gmail.com` — surfaced on `/contact`
+      (WhatsApp / SMS / mailto) and in the footer; JSON-LD `contactPoint`
+- [x] Hero H1 → "חולצות כדורגל" (removed "מקוריות במראה")
+- [x] Polished coming-soon states (`ComingSoon`) on `/` and `/shop` while the
+      catalog is empty; deleted `TodoNotice`; removed every customer-visible
+      "TODO" / filename / source-path
+- [x] FAQ: answers describe only the on-site flow (spec-supported); every
+      owner-specific point (delivery times, return terms, payment methods, etc.)
+      is a neutral "יימסרו בתיאום ההזמנה" deferral — no invented policy. FAQ JSON-LD
+- [x] Shipping & Returns: neutral "יימסרו בתיאום ההזמנה" copy only — no invented
+      times / prices / return windows / conditions / payment methods / guarantees
+- [x] a11y: unique filter-control ids per instance (desktop vs mobile drawer);
+      collapsed mobile menu `inert` + `aria-hidden`; header icon buttons and
+      cart remove button → 44px; drawer close button 44px + labelled
+- [x] Desktop/tablet floating WhatsApp button
+- [x] Removed duplicate in-page search on `/shop` (header search is the one)
+- [x] Full-width primary CTAs on mobile (hero, empty cart, coming-soon, home CTA)
+- [x] Single price format (`formatPrice`) shared by UI **and** WhatsApp messages
+- [x] Empty-state wording made shopper-friendly (no "אין נתונים עדיין")
 
 ## Blocked — waiting on owner data (do NOT fill by guesswork)
-- [ ] **`src/data/products.json`** — full file. The brief's paste was truncated
-      inside the "Netherlands" entry. Need the complete catalog (teams, kits,
-      prices, `sizes`, `versions`, `season`). Until then every catalog surface
-      shows an empty state.
-- [ ] **`src/data/deals.json`** — real bundle deals. Page + types ready; ships
-      as `[]`.
-- [ ] **`src/data/reviews.json`** — real customer reviews keyed by kitId. Ships
-      as `{}`.
-- [ ] **`src/data/bestsellers.json`** — ordered kitId list once owner decides.
-      Homepage "Bestsellers" section stays hidden while empty.
-- [ ] **`public/images/`** — real kit photos at the exact paths referenced by
-      `products.json` (`/images/<team>/<slot>-<front|back>.jpg`), plus
-      `public/images/hero.jpg` for the homepage banner.
-- [ ] **FAQ answers** — real text for `src/app/faq/page.tsx`.
-- [ ] **Shipping & Returns policy** — real text for
-      `src/app/shipping-returns/page.tsx`.
-- [ ] **Contact details** — email / phone / address in `src/config/site.ts`.
-- [ ] **Social links** — Instagram / Facebook / TikTok in `src/config/site.ts`.
+- [ ] **Full catalog** — complete `src/data/products.json` (teams, kits, prices,
+      `sizes`, `versions`, `season`). Until then every catalog surface shows the
+      coming-soon state.
+- [ ] **Deals** — real bundle deals for `src/data/deals.json` (ships `[]`).
+- [ ] **Reviews** — real customer reviews for `src/data/reviews.json` (ships `{}`).
+- [ ] **Bestsellers** — ordered kitId list for `src/data/bestsellers.json`
+      (ships `[]`; homepage section stays hidden while empty).
+- [ ] **Images** — real kit photos at the paths referenced by `products.json`,
+      plus `public/images/hero.jpg`. Missing → "תמונה בקרוב".
+- [ ] **Shipping & Returns / FAQ specifics** — if the owner wants concrete
+      delivery times, shipping prices, a return window/conditions or payment
+      methods published, provide that text (goes into
+      `src/app/shipping-returns/page.tsx` and the relevant FAQ answers). Until
+      then those points stay as neutral deferrals.
+- [ ] **Social links** — Instagram / Facebook / TikTok in `src/config/site.ts`
+      (nothing renders while empty).
 - [ ] **Production URL** — set `site.url` in `src/config/site.ts` before deploy.
+- [ ] **Address** — add to `/contact` + JSON-LD if the business has a public one.
 
 ## After data arrives
-- [ ] Load real `products.json`, verify catalog, filters, team pages, product
+- [ ] Load real `products.json`; verify catalog, filters, team pages, product
       pages, search autocomplete
 - [ ] Regenerate `public/images/README.md` checklist from the real data
-- [ ] Verify WhatsApp message format end-to-end with a real multi-item cart
+- [ ] Verify the WhatsApp order message end-to-end with a real multi-item cart
 - [ ] Lighthouse mobile pass (performance, a11y, SEO)
-- [ ] Owner review of copy + theme
-- [ ] Add real favicon / PWA icons (192, 512) — manifest currently points only
-      at `favicon.ico`
-- [ ] Swap `opengraph-image` gradient for a photo-based banner if the owner
-      provides brand artwork
+- [ ] Real favicon / PWA icons (192, 512) — manifest currently points only at
+      `favicon.ico`
+- [ ] Swap the `opengraph-image` gradient for brand artwork if provided

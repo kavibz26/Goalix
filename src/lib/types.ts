@@ -1,4 +1,4 @@
-// Shared domain types for the FootballKits-il catalog.
+// Shared domain types for the Goalix catalog.
 // The catalog data itself is supplied by the site owner via src/data/*.json.
 // These types describe the shape that data must follow — they never invent values.
 

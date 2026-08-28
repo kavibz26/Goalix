@@ -1,12 +1,15 @@
-# FootballKits-il
+# Goalix
 
 Mobile-first e-commerce storefront for football kits. No on-site payment — every
 order is finalised in WhatsApp with a pre-filled message.
 
+> The repo folder / `package.json` name / dev-server id stay `footballkits-il`
+> for continuity; the customer-facing brand is **Goalix**.
+
 ## Stack
 - Next.js 16 (App Router) · TypeScript · Tailwind CSS v4
-- `next-themes` (dark default + light) · `framer-motion` micro-animations
-- Cart state in React context, persisted to `localStorage`
+- `next-themes` — light is the fixed default, manual light/dark toggle
+- `framer-motion` micro-animations · cart state in React context + `localStorage`
 - Hebrew / RTL first
 
 ## Develop
@@ -27,8 +30,8 @@ app renders clean empty states until real data is in place.
 | `src/data/reviews.json` | reviews keyed by kitId | `{}` |
 | `src/data/bestsellers.json` | ordered kitId list | `[]` |
 
-Site-level config (WhatsApp number, contact details, social links, production
-URL): `src/config/site.ts`.
+Site-level config (brand name, WhatsApp/SMS number, contact emails, social
+links, production URL): `src/config/site.ts`.
 
 Images: real photos only, under `public/images/` — see
 `public/images/README.md`. Run `npm run images:manifest` after loading the real

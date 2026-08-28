@@ -84,7 +84,7 @@ export function ProductDetail({
     <div className="flex flex-col gap-6">
       <div>
         <p className="text-sm text-muted">{product.teamNameHe ?? product.teamName}</p>
-        <h1 className="font-display text-2xl font-bold uppercase sm:text-3xl">
+        <h1 className="font-display text-2xl font-bold sm:text-3xl">
           {product.nameHe ?? product.name}
         </h1>
         <p className="mt-2 text-xl font-bold text-accent">

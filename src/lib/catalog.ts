@@ -32,7 +32,7 @@ export const KNOWN_AGES: AgeGroup[] = ["Adults", "Kids"];
 
 export function getSiteMeta() {
   return {
-    siteName: products.siteName ?? "FootballKits-il",
+    siteName: products.siteName ?? "Goalix",
     season: products.season ?? null,
   };
 }

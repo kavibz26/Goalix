@@ -4,7 +4,7 @@ import { site } from "@/config/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: site.name,
-    short_name: "FootballKits",
+    short_name: "Goalix",
     description: site.description,
     start_url: "/",
     display: "standalone",

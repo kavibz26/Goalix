@@ -100,7 +100,7 @@ export default async function ProductPage({
       </div>
 
       <section className="mt-14">
-        <h2 className="mb-4 font-display text-2xl font-bold uppercase">
+        <h2 className="mb-4 font-display text-2xl font-bold">
           ביקורות לקוחות
         </h2>
         <ReviewList reviews={reviews} />

@@ -39,7 +39,7 @@ export function SectionHeader({
 }) {
   return (
     <div className="mb-4 flex items-end justify-between gap-4">
-      <h2 className="font-display text-2xl font-bold tracking-wide uppercase sm:text-3xl">
+      <h2 className="font-display text-2xl font-bold sm:text-3xl">
         <span className="inline-block border-b-4 border-accent pb-1">{title}</span>
       </h2>
       {action}

@@ -7,7 +7,7 @@ import { whatsappUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "מבצעים",
-  description: "מבצעי חבילות על חולצות כדורגל ב-FootballKits-il.",
+  description: "מבצעי חבילות על חולצות כדורגל ב-Goalix.",
   alternates: { canonical: "/deals" },
 };
 
@@ -16,7 +16,7 @@ export default function DealsPage() {
 
   return (
     <Container className="py-8">
-      <h1 className="font-display text-3xl font-bold uppercase">🔥 מבצעים</h1>
+      <h1 className="font-display text-3xl font-bold">🔥 מבצעים</h1>
       <p className="mt-2 text-sm text-muted">
         מבצעי חבילות — לדוגמה כמה חולצות במחיר אחד. ההזמנה מסתיימת בוואטסאפ.
       </p>
@@ -45,7 +45,7 @@ export default function DealsPage() {
                 </div>
                 <WhatsAppButton
                   href={whatsappUrl(
-                    `Hi, I want the deal: ${d.title} (${d.bundlePrice}${"₪"})`,
+                    `Hi, I want the deal: ${d.title} (${formatPrice(d.bundlePrice)})`,
                   )}
                   className="mt-auto"
                 >
@@ -57,7 +57,7 @@ export default function DealsPage() {
         ) : (
           <EmptyState
             title="אין מבצעים פעילים כרגע"
-            hint="הדף מוכן. מבצעים אמיתיים יוזנו לקובץ deals.json ויופיעו כאן אוטומטית."
+            hint="מבצעי חבילות חדשים יתפרסמו כאן. רוצים לדעת ראשונים? עקבו אחרינו או כתבו לנו בוואטסאפ."
           />
         )}
       </div>

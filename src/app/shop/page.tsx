@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Container, EmptyState } from "@/components/ui";
+import { ComingSoon } from "@/components/ComingSoon";
 import { ProductCard } from "@/components/product/ProductCard";
 import { FilterPanel, type FilterOptions } from "@/components/shop/FilterPanel";
-import { SearchAutocomplete } from "@/components/shop/SearchAutocomplete";
 import {
   filterProducts,
   getLeagues,
   getSeasons,
   getTeams,
   getVersions,
+  hasCatalog,
   KNOWN_AGES,
   KNOWN_SEASONS,
   KNOWN_VERSIONS,
@@ -19,7 +20,7 @@ import type { AgeGroup, Version } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "כל החולצות",
-  description: "עיון וסינון של כל חולצות הכדורגל בחנות FootballKits-il.",
+  description: "עיון וסינון של כל חולצות הכדורגל בחנות Goalix.",
   alternates: { canonical: "/shop" },
 };
 
@@ -33,6 +34,17 @@ export default async function ShopPage({
     const v = sp[k];
     return (Array.isArray(v) ? v[0] : v) ?? undefined;
   };
+
+  if (!hasCatalog()) {
+    return (
+      <Container className="py-8">
+        <h1 className="font-display text-3xl font-bold">כל החולצות</h1>
+        <div className="mt-6">
+          <ComingSoon body="עוד רגע אפשר יהיה לסנן לפי קבוצה, ליגה, עונה וגרסה. בינתיים — כתבו לנו בוואטסאפ ונעדכן אתכם ברגע שהחולצות עולות." />
+        </div>
+      </Container>
+    );
+  }
 
   const filters: CatalogFilters = {
     team: pick("team"),
@@ -49,30 +61,24 @@ export default async function ShopPage({
   const options: FilterOptions = {
     teams: getTeams().map((t) => ({ id: t.id, label: t.name_he ?? t.name })),
     leagues: getLeagues(),
-    seasons: dataSeasons.length
-      ? dataSeasons
-      : [...KNOWN_SEASONS],
+    seasons: dataSeasons.length ? dataSeasons : [...KNOWN_SEASONS],
     versions: getVersions().length ? getVersions() : KNOWN_VERSIONS,
     ages: KNOWN_AGES,
   };
 
   return (
     <Container className="py-8">
-      <h1 className="font-display text-3xl font-bold uppercase">כל החולצות</h1>
-
-      <div className="mt-4 max-w-xl">
-        <SearchAutocomplete placeholder="חיפוש בקטלוג…" />
-      </div>
+      <h1 className="font-display text-3xl font-bold">כל החולצות</h1>
 
       <div className="mt-6 grid gap-8 md:grid-cols-[220px_1fr]">
-        <Suspense fallback={<div className="text-sm text-muted">טוען סינון…</div>}>
+        <Suspense
+          fallback={<div className="text-sm text-muted">טוען סינון…</div>}
+        >
           <FilterPanel options={options} />
         </Suspense>
 
         <div>
-          <p className="mb-4 text-sm text-muted">
-            {results.length} תוצאות
-          </p>
+          <p className="mb-4 text-sm text-muted">{results.length} תוצאות</p>
 
           {results.length > 0 ? (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -82,8 +88,8 @@ export default async function ShopPage({
             </div>
           ) : (
             <EmptyState
-              title="אין חולצות שתואמות את הסינון"
-              hint="נסו לשנות את הסינון, או חזרו כשנוסיף עוד חולצות לקטלוג."
+              title="לא נמצאו חולצות מתאימות"
+              hint="נסו לנקות חלק מהסינון."
             />
           )}
         </div>

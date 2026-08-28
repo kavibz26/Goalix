@@ -23,14 +23,14 @@ export default function CartPage() {
 
   return (
     <Container className="py-8">
-      <h1 className="font-display text-3xl font-bold uppercase">עגלת קניות</h1>
+      <h1 className="font-display text-3xl font-bold">עגלת קניות</h1>
 
       {items.length === 0 ? (
         <div className="mt-6">
           <EmptyState title="העגלה ריקה" hint="הוסיפו חולצות מהחנות כדי להתחיל." />
           <Link
             href="/shop"
-            className="mt-4 inline-flex min-h-12 items-center rounded-xl bg-accent px-6 font-semibold text-accent-contrast"
+            className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-accent px-6 font-semibold text-accent-contrast sm:w-auto"
           >
             לחנות
           </Link>
@@ -69,8 +69,8 @@ export default function CartPage() {
                     <button
                       type="button"
                       onClick={() => remove(i.lineId)}
-                      aria-label="הסר פריט"
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted hover:text-foreground"
+                      aria-label={`הסרת ${i.teamName} ${i.kitName} מהעגלה`}
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border text-muted hover:text-foreground"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
