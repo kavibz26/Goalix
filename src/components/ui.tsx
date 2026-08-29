@@ -13,7 +13,7 @@ export function Badge({
 }) {
   const tones = {
     accent: "bg-accent text-accent-contrast",
-    hot: "bg-orange-500 text-white",
+    hot: "bg-magenta-500 text-white",
     muted: "bg-surface text-muted",
   } as const;
   return (

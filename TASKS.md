@@ -18,7 +18,7 @@ delete without owner approval.
 - [x] Scaffold Next.js 16 + TypeScript + Tailwind v4 (App Router, `src/`)
 - [x] Deps: clsx, lucide-react, next-themes (framer-motion removed — see below)
 - [x] Theme system — **light is the fixed default** (OS preference not followed),
-      manual light/dark toggle; azure/navy palette, RTL Hebrew
+      manual light/dark toggle; violet/magenta/night palette, RTL Hebrew
 - [x] Fonts: **Rubik** (display, Hebrew+Latin) + Heebo (body); no uppercase /
       wide-tracking on Hebrew headings
 - [x] Layout: sticky Header, Footer, sticky mobile "Order on WhatsApp" bar,
@@ -40,8 +40,8 @@ delete without owner approval.
 ## Done — rebrand + review pass (Goalix)
 - [x] Rebrand FootballKits-il → **Goalix** across all customer-facing UI, meta,
       OG image, manifest, JSON-LD, WhatsApp presets
-- [x] Contact: WhatsApp + SMS on `0559651785` (`972559651785`), emails
-      `lavibz123@gmail.com` / `lavibz269@gmail.com` — surfaced on `/contact`
+- [x] Contact: WhatsApp + SMS on `0559651785` (`972559651785`), email
+      `lavibz123@gmail.com` (single address) — surfaced on `/contact`
       (WhatsApp / SMS / mailto) and in the footer; JSON-LD `contactPoint`
 - [x] Hero H1 → "חולצות כדורגל" (removed "מקוריות במראה")
 - [x] Polished coming-soon states (`ComingSoon`) on `/` and `/shop` while the
@@ -60,6 +60,27 @@ delete without owner approval.
 - [x] Full-width primary CTAs on mobile (hero, empty cart, coming-soon, home CTA)
 - [x] Single price format (`formatPrice`) shared by UI **and** WhatsApp messages
 - [x] Empty-state wording made shopper-friendly (no "אין נתונים עדיין")
+
+## Done — visual redesign (violet / premium, mockup-referenced)
+- [x] Palette swap azure/navy → **violet / magenta / deep-night** (light + dark),
+      approved by owner; deal badge orange → magenta; WhatsApp green kept
+- [x] New brand mark — "G + swoosh" SVG (`Logo` component, `icon.svg`,
+      `brand-icon.tsx` for apple-icon + manifest PNGs) — SVG approximation,
+      not a final logo file
+- [x] Dark, premium hero with violet lighting; H1 "פשוט. חכם. בשבילך.";
+      sub "חולצות כדורגל נבחרות — ישירות אליך"; tagline "Smart Finds. Global Vibes."
+- [x] `TrustStrip` — משלוחים לכל הארץ · קנייה בטוחה · שירות אישי (labels only,
+      no delivery-time/policy claims); light row on the homepage + dark band
+      above the footer
+- [x] `ComingSoon` — violet package illustration (SVG)
+- [x] New `/about` page (הסיפור שלנו + 3 values); added to nav + sitemap + footer
+- [x] Nav → דף הבית · חנות · אודות · שאלות נפוצות · צור קשר ("מבצעים" moved to
+      the footer)
+- [x] `site.tagline`; description reworded (still football-kit-clear); OG image
+      restyled violet + brand mark (English copy — Satori has no Hebrew font)
+- [x] **Football-kit store unchanged:** catalog / `/shop` + filters /
+      `/product/[kitId]` / cart / WhatsApp message format / sizes / versions /
+      `products.json` empty skeleton — none touched
 
 ## Done — production-readiness pass (empty-catalog storefront)
 - [x] Site origin is env-driven via the **server-only** `SITE_URL` (in

@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileWhatsAppBar } from "@/components/layout/MobileWhatsAppBar";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { TrustStrip } from "@/components/TrustStrip";
 
 // Body font — Hebrew-first, so only the Hebrew subset is preloaded; the Latin
 // subset still loads on demand for the few English strings.
@@ -42,12 +43,12 @@ export const metadata: Metadata = {
     locale: site.locale,
     url: siteUrl,
     siteName: site.name,
-    title: `${site.name} — חולצות כדורגל`,
+    title: `${site.name} — חולצות כדורגל נבחרות`,
     description: site.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — חולצות כדורגל`,
+    title: `${site.name} — חולצות כדורגל נבחרות`,
     description: site.description,
   },
   robots: { index: true, follow: true },
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                   "@type": "Organization",
                   name: site.name,
                   url: siteUrl,
+                  logo: `${siteUrl}/icons/icon-512.png`,
                   description: site.description,
                   contactPoint: {
                     "@type": "ContactPoint",
@@ -110,10 +112,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             דלג לתוכן
           </a>
           <Header />
-          <main id="main" className="flex-1 pb-24 md:pb-0">
+          <main id="main" className="flex-1">
             {children}
           </main>
-          <Footer />
+          <TrustStrip variant="dark" />
+          <div className="pb-24 md:pb-0">
+            <Footer />
+          </div>
           <MobileWhatsAppBar />
           <FloatingWhatsApp />
         </Providers>

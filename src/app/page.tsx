@@ -5,6 +5,7 @@ import { ProductRail } from "@/components/home/ProductRail";
 import { TeamCard } from "@/components/product/TeamCard";
 import { Container, EmptyState, SectionHeader } from "@/components/ui";
 import { ComingSoon } from "@/components/ComingSoon";
+import { TrustStrip } from "@/components/TrustStrip";
 import { Reveal } from "@/components/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { whatsappUrl } from "@/lib/whatsapp";
@@ -27,6 +28,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col gap-14 pb-10">
       <Hero hasImage={publicFileExists("/images/hero.jpg")} />
+      <TrustStrip />
 
       <Container className="flex flex-col gap-14">
         {!catalogReady ? (
@@ -85,7 +87,7 @@ export default function HomePage() {
                         key={d.id}
                         className="rounded-2xl border border-border bg-surface-raised p-5"
                       >
-                        <span className="inline-flex rounded-full bg-orange-500 px-2.5 py-1 text-xs font-bold text-white">
+                        <span className="inline-flex rounded-full bg-magenta-500 px-2.5 py-1 text-xs font-bold text-white">
                           {d.badge ?? `${d.kitCount} חולצות`}
                         </span>
                         <p className="mt-3 font-semibold">

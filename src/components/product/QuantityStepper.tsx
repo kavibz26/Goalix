@@ -2,6 +2,8 @@
 
 import { Minus, Plus } from "lucide-react";
 
+type QtyInput = number | ((prev: number) => number);
+
 export function QuantityStepper({
   value,
   onChange,
@@ -9,7 +11,7 @@ export function QuantityStepper({
   max = 99,
 }: {
   value: number;
-  onChange: (next: number) => void;
+  onChange: (next: QtyInput) => void;
   min?: number;
   max?: number;
 }) {
@@ -19,7 +21,9 @@ export function QuantityStepper({
       <button
         type="button"
         aria-label="הפחת כמות"
-        onClick={() => onChange(clamp(value - 1))}
+        // Functional update: rapid taps that fire before a re-render still
+        // accumulate against the latest value.
+        onClick={() => onChange((v) => clamp(v - 1))}
         className="inline-flex h-11 w-11 items-center justify-center disabled:opacity-40"
         disabled={value <= min}
       >
@@ -38,7 +42,7 @@ export function QuantityStepper({
       <button
         type="button"
         aria-label="הוסף כמות"
-        onClick={() => onChange(clamp(value + 1))}
+        onClick={() => onChange((v) => clamp(v + 1))}
         className="inline-flex h-11 w-11 items-center justify-center disabled:opacity-40"
         disabled={value >= max}
       >

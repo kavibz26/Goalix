@@ -12,6 +12,8 @@ order is finalised in WhatsApp with a pre-filled message.
 - `lucide-react` icons · cart state in React context + `localStorage`
 - Scroll-reveal is a tiny IntersectionObserver + CSS effect (no animation lib)
 - Hebrew / RTL first
+- Brand: **Goalix** — football-kit store · violet / magenta / deep-night palette
+  · dark premium hero · "G + swoosh" mark (SVG, `src/components/Logo.tsx`)
 
 ## Develop
 ```bash

@@ -29,7 +29,7 @@ export default function DealsPage() {
                 key={d.id}
                 className="flex flex-col gap-3 rounded-2xl border border-border bg-surface-raised p-5"
               >
-                <span className="inline-flex w-fit rounded-full bg-orange-500 px-2.5 py-1 text-xs font-bold text-white">
+                <span className="inline-flex w-fit rounded-full bg-magenta-500 px-2.5 py-1 text-xs font-bold text-white">
                   {d.badge ?? `${d.kitCount} חולצות`}
                 </span>
                 <h2 className="text-lg font-semibold">{d.title_he ?? d.title}</h2>

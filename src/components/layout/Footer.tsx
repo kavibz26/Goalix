@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { Container } from "@/components/ui";
+import { Logo } from "@/components/Logo";
 import { site } from "@/config/site";
 
 const COLS = [
   {
     title: "חנות",
     links: [
-      { href: "/shop", label: "כל החולצות" },
+      { href: "/shop", label: "חנות" },
       { href: "/deals", label: "מבצעים" },
+      { href: "/about", label: "אודות" },
     ],
   },
   {
@@ -25,11 +27,11 @@ const footLink = "block py-2.5 hover:text-foreground";
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-border bg-surface">
+    <footer className="bg-surface">
       <Container className="grid gap-8 py-10 sm:grid-cols-3">
         <div>
-          <div className="font-display text-lg font-bold">{site.name}</div>
-          <p className="mt-2 max-w-xs text-sm text-muted">{site.description}</p>
+          <Logo withTagline />
+          <p className="mt-3 max-w-xs text-sm text-muted">{site.description}</p>
           <ul className="mt-2 text-sm">
             <li>
               <a

@@ -7,7 +7,9 @@
 
 export const site = {
   name: "Goalix",
-  description: "Goalix — חנות חולצות כדורגל. קנייה מהירה, הזמנה בוואטסאפ.",
+  tagline: "Smart Finds. Global Vibes.",
+  description:
+    "Goalix — חנות חולצות כדורגל. חולצות נבחרות, ישירות אליך. הזמנה מהירה בוואטסאפ.",
   locale: "he_IL",
   dir: "rtl" as const,
   lang: "he" as const,
@@ -23,7 +25,7 @@ export const site = {
     phoneIntl: "972559651785",
     phoneDisplay: "055-965-1785",
     smsHref: "sms:+972559651785",
-    emails: ["lavibz123@gmail.com", "lavibz269@gmail.com"],
+    emails: ["lavibz123@gmail.com"],
   },
 
   // Social links — not yet supplied (tracked in TASKS.md). Nothing renders while empty.

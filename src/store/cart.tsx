@@ -38,12 +38,18 @@ interface CartState {
   hydrated: boolean;
 }
 
+type QtyInput = number | ((prev: number) => number);
+
 type Action =
   | { type: "hydrate"; items: CartItem[] }
   | { type: "add"; item: NewCartItem }
-  | { type: "setQty"; lineId: string; qty: number }
+  | { type: "setQty"; lineId: string; qty: QtyInput }
   | { type: "remove"; lineId: string }
   | { type: "clear" };
+
+const MAX_QTY = 99;
+const clampQty = (n: number) =>
+  Math.min(MAX_QTY, Math.max(1, Math.floor(n) || 1));
 
 function makeLineId(i: NewCartItem): string {
   return [
@@ -72,12 +78,18 @@ function reducer(state: CartState, action: Action): CartState {
     }
 
     case "setQty": {
-      const qty = Math.max(1, Math.floor(action.qty) || 1);
+      // Resolve against the authoritative item qty so rapid +/- taps (which
+      // fire before a re-render) accumulate correctly.
       return {
         ...state,
-        items: state.items.map((i) =>
-          i.lineId === action.lineId ? { ...i, qty } : i,
-        ),
+        items: state.items.map((i) => {
+          if (i.lineId !== action.lineId) return i;
+          const next =
+            typeof action.qty === "function"
+              ? action.qty(i.qty)
+              : action.qty;
+          return { ...i, qty: clampQty(next) };
+        }),
       };
     }
 
@@ -101,7 +113,7 @@ interface CartContextValue {
   count: number;
   total: number;
   add: (item: NewCartItem) => void;
-  setQty: (lineId: string, qty: number) => void;
+  setQty: (lineId: string, qty: QtyInput) => void;
   remove: (lineId: string) => void;
   clear: () => void;
 }

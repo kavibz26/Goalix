@@ -7,12 +7,14 @@ import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/store/cart";
 import { SearchAutocomplete } from "@/components/shop/SearchAutocomplete";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { Logo } from "@/components/Logo";
 import { Container } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 const NAV = [
-  { href: "/shop", label: "כל החולצות" },
-  { href: "/deals", label: "מבצעים 🔥" },
+  { href: "/", label: "דף הבית" },
+  { href: "/shop", label: "חנות" },
+  { href: "/about", label: "אודות" },
   { href: "/faq", label: "שאלות נפוצות" },
   { href: "/contact", label: "צור קשר" },
 ];
@@ -25,7 +27,9 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
 
   const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
+    href === "/"
+      ? pathname === "/"
+      : pathname === href || pathname.startsWith(`${href}/`);
 
   // Close the mobile menu on route change (also handled per-link, but this
   // covers browser back/forward). Escape / outside-tap are handled below.
@@ -66,13 +70,10 @@ export function Header() {
 
         <Link
           href="/"
-          className="flex min-h-11 items-center gap-2 pe-1 font-display text-xl font-extrabold"
+          className="flex min-h-11 items-center pe-1"
           aria-label="Goalix — לדף הבית"
         >
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-azure-400 to-azure-700 text-sm font-black text-white">
-            G
-          </span>
-          <span>Goalix</span>
+          <Logo />
         </Link>
 
         <nav className="ms-4 hidden items-center gap-5 text-sm font-medium md:flex">
@@ -134,7 +135,7 @@ export function Header() {
       <div
         className={cn(
           "overflow-hidden border-t border-border transition-[max-height] duration-300 md:hidden",
-          menuOpen ? "max-h-72" : "max-h-0",
+          menuOpen ? "max-h-96" : "max-h-0",
         )}
         aria-hidden={!menuOpen}
         // Keeps the collapsed links out of the tab order / screen-reader tree.

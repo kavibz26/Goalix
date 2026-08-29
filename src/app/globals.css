@@ -7,46 +7,51 @@
   --font-sans: var(--font-heebo), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-rubik), var(--font-heebo), ui-sans-serif, sans-serif;
 
-  /* Brand palette — azure / sky blue (תכלת), white, deep navy. */
-  --color-azure-50: #eef6ff;
-  --color-azure-100: #d9ecff;
-  --color-azure-200: #b7dbff;
-  --color-azure-300: #85c2ff;
-  --color-azure-400: #4aa3ff;
-  --color-azure-500: #1e83f7;
-  --color-azure-600: #0f6fe0;
-  --color-azure-700: #0d59b8;
-  --color-azure-800: #114a91;
-  --color-azure-900: #123f75;
+  /* Brand palette — violet / purple / magenta on deep night. */
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-300: #c4b5fd;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+  --color-violet-800: #5b21b6;
+  --color-violet-900: #4c1d95;
 
-  --color-navy-700: #123152;
-  --color-navy-800: #0d2440;
-  --color-navy-900: #091a30;
-  --color-navy-950: #060f1e;
+  /* Secondary accent — used sparingly (deal badge, highlights). */
+  --color-magenta-400: #e879f9;
+  --color-magenta-500: #d946ef;
+  --color-magenta-600: #c026d3;
+
+  --color-night-700: #211c3a;
+  --color-night-800: #1a1730;
+  --color-night-900: #131022;
+  --color-night-950: #0b0916;
 }
 
 :root {
   --background: #ffffff;
-  --surface: #eef5fd;
+  --surface: #f5f4fb;
   --surface-raised: #ffffff;
-  --foreground: #091a30;
-  --muted: #5b7286;
-  --border: #d5e5f5;
-  --accent: var(--color-azure-600);
-  --accent-strong: var(--color-azure-700);
+  --foreground: #14121f;
+  --muted: #6b6880;
+  --border: #e6e3f2;
+  --accent: var(--color-violet-600);
+  --accent-strong: var(--color-violet-700);
   --accent-contrast: #ffffff;
 }
 
 .dark {
-  --background: #060f1e;
-  --surface: #0d2440;
-  --surface-raised: #123152;
-  --foreground: #eaf2fb;
-  --muted: #93a9c2;
-  --border: #234461;
-  --accent: var(--color-azure-400);
-  --accent-strong: var(--color-azure-300);
-  --accent-contrast: #04121f;
+  --background: #100e1c;
+  --surface: #1a1730;
+  --surface-raised: #221d3d;
+  --foreground: #ece9f7;
+  --muted: #a29dbb;
+  --border: #322c50;
+  --accent: var(--color-violet-400);
+  --accent-strong: var(--color-violet-300);
+  --accent-contrast: #1a1033;
 }
 
 @theme inline {
@@ -87,9 +92,12 @@ body {
   z-index: 100;
   transform: translateY(-150%);
   transition: transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   background: var(--accent);
   color: var(--accent-contrast);
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-weight: 600;
 }

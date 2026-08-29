@@ -21,26 +21,40 @@ export default function OpengraphImage() {
           justifyContent: "center",
           padding: "80px",
           background:
-            "linear-gradient(135deg, #0f6fe0 0%, #114a91 55%, #060f1e 100%)",
+            "linear-gradient(135deg, #7c3aed 0%, #4c1d95 45%, #0b0916 100%)",
           color: "#ffffff",
           fontFamily: "sans-serif",
         }}
       >
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <svg
+            width="78"
+            height="78"
+            viewBox="0 0 64 64"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M45 23 A15 15 0 1 0 45 41 L33 41 L33 34" />
+            <path d="M40 44 Q50 50 55 58" />
+          </svg>
+          <div style={{ fontSize: 92, fontWeight: 800 }}>{site.name}</div>
+        </div>
         <div
           style={{
             fontSize: 30,
             letterSpacing: 4,
             textTransform: "uppercase",
-            opacity: 0.85,
+            opacity: 0.8,
+            marginTop: 28,
           }}
         >
-          Season 2025 / 26
+          {site.tagline}
         </div>
-        <div style={{ fontSize: 104, fontWeight: 800, marginTop: 12 }}>
-          {site.name}
-        </div>
-        <div style={{ fontSize: 36, marginTop: 20, opacity: 0.9 }}>
-          Home · Away · Third — order on WhatsApp
+        <div style={{ fontSize: 40, marginTop: 16, opacity: 0.95 }}>
+          Football kits · Home · Away · Third · order on WhatsApp
         </div>
       </div>
     ),
