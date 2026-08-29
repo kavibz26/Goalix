@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Heebo, Rubik } from "next/font/google";
 import "./globals.css";
 import { site } from "@/config/site";
+import { siteUrl } from "@/config/site-url";
 import { Providers } from "@/components/Providers";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -28,7 +29,7 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${site.name} — חולצות כדורגל 2025/26`,
     template: `%s | ${site.name}`,
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: site.locale,
-    url: site.url,
+    url: siteUrl,
     siteName: site.name,
     title: `${site.name} — חולצות כדורגל`,
     description: site.description,
@@ -79,7 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 {
                   "@type": "Organization",
                   name: site.name,
-                  url: site.url,
+                  url: siteUrl,
                   description: site.description,
                   contactPoint: {
                     "@type": "ContactPoint",
@@ -92,11 +93,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 {
                   "@type": "WebSite",
                   name: site.name,
-                  url: site.url,
+                  url: siteUrl,
                   inLanguage: "he-IL",
                   potentialAction: {
                     "@type": "SearchAction",
-                    target: `${site.url}/shop?q={search_term_string}`,
+                    target: `${siteUrl}/shop?q={search_term_string}`,
                     "query-input": "required name=search_term_string",
                   },
                 },

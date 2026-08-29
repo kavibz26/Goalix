@@ -24,9 +24,10 @@ npm run build
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| `NEXT_PUBLIC_SITE_URL` | **production** | Public origin (scheme + host, no trailing slash). Drives canonical URLs, `sitemap.xml`, `robots.txt`, Open Graph and JSON-LD. Falls back to `http://localhost:3000` in development only. |
+| `SITE_URL` | **production** | Public origin (scheme + host, no trailing slash). Drives canonical URLs, `sitemap.xml`, `robots.txt`, Open Graph and JSON-LD. **Server-only** — read only in `src/config/site-url.ts` (guarded with `server-only`) and rendered server-side; never sent to the browser. Must be set at **build time**. Falls back to `http://localhost:3000` in development only. |
 
-Copy `.env.example` → `.env.local` for local overrides.
+Copy `.env.example` → `.env.local` for local overrides. On Vercel, add `SITE_URL`
+as a plain (non-public) Environment Variable for the Production environment.
 
 ## Data — owner supplied, never invented
 All catalog content lives in `src/data/` and is provided by the site owner. The

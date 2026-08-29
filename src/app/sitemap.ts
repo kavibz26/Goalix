@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/config/site";
+import { siteUrl } from "@/config/site-url";
 import { getAllProducts, getTeams } from "@/lib/catalog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = site.url.replace(/\/$/, "");
+  const base = siteUrl;
 
   // Indexable pages only. /cart is intentionally excluded — it is noindex.
   const staticPaths = [

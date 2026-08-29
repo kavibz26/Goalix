@@ -62,8 +62,10 @@ delete without owner approval.
 - [x] Empty-state wording made shopper-friendly (no "אין נתונים עדיין")
 
 ## Done — production-readiness pass (empty-catalog storefront)
-- [x] `site.url` is env-driven (`NEXT_PUBLIC_SITE_URL`, see `.env.example`);
-      local-dev fallback `http://localhost:3000` — no fake production domain
+- [x] Site origin is env-driven via the **server-only** `SITE_URL` (in
+      `src/config/site-url.ts`, guarded with `server-only`, kept out of the
+      client `@/config/site` object); `.env.example` documents it; local-dev
+      fallback `http://localhost:3000` — no fake production domain
 - [x] `/cart` removed from `sitemap.ts` (it is noindex)
 - [x] Goalix icons: `src/app/icon.svg` (favicon), `apple-icon.tsx`,
       `/icons/icon-192.png` + `/icons/icon-512.png` (manifest, via `next/og`);
@@ -123,9 +125,9 @@ delete without owner approval.
       then those points stay as neutral deferrals.
 - [ ] **Social links** — Instagram / Facebook / TikTok in `src/config/site.ts`
       (nothing renders while empty).
-- [ ] **Production URL** — set `NEXT_PUBLIC_SITE_URL` in the host's env before
-      deploy (`site.hasRealUrl` is `false` until then; canonicals/sitemap/OG use
-      the localhost fallback).
+- [ ] **Production URL** — set `SITE_URL` (server-only) in the host's env at
+      **build time** before deploy (`hasRealSiteUrl` is `false` until then;
+      canonicals / sitemap / robots / OG / JSON-LD use the localhost fallback).
 - [ ] **Address** — add to `/contact` + JSON-LD if the business has a public one.
 
 ## After data arrives
