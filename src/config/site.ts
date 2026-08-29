@@ -9,7 +9,7 @@ export const site = {
   name: "Goalix",
   tagline: "Smart Finds. Global Vibes.",
   description:
-    "Goalix — חנות חולצות כדורגל. חולצות נבחרות, ישירות אליך. הזמנה מהירה בוואטסאפ.",
+    "Goalix — חנות חולצות כדורגל של קבוצות ונבחרות. בית · חוץ · שלישית. הזמנה מהירה בוואטסאפ.",
   locale: "he_IL",
   dir: "rtl" as const,
   lang: "he" as const,

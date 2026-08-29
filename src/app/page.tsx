@@ -5,7 +5,6 @@ import { ProductRail } from "@/components/home/ProductRail";
 import { TeamCard } from "@/components/product/TeamCard";
 import { Container, EmptyState, SectionHeader } from "@/components/ui";
 import { ComingSoon } from "@/components/ComingSoon";
-import { TrustStrip } from "@/components/TrustStrip";
 import { Reveal } from "@/components/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { whatsappUrl } from "@/lib/whatsapp";
@@ -28,7 +27,6 @@ export default function HomePage() {
   return (
     <div className="flex flex-col gap-14 pb-10">
       <Hero hasImage={publicFileExists("/images/hero.jpg")} />
-      <TrustStrip />
 
       <Container className="flex flex-col gap-14">
         {!catalogReady ? (

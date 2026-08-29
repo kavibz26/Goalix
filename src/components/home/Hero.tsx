@@ -37,8 +37,8 @@ export function Hero({ hasImage }: { hasImage: boolean }) {
           פשוט. חכם. בשבילך.
         </h1>
         <p className="max-w-md text-base text-white/85 sm:text-lg">
-          חולצות כדורגל נבחרות — ישירות אליך. בחירה, מידה, והזמנה בוואטסאפ תוך שתי
-          לחיצות.
+          בית · חוץ · שלישית — לקבוצות ולנבחרות. בוחרים מידה וגרסה, שולחים הזמנה
+          בוואטסאפ.
         </p>
         <Link
           href="/shop"

@@ -8,15 +8,15 @@ import { whatsappUrl } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "אודות",
   description:
-    "הסיפור של Goalix — חולצות כדורגל נבחרות, ישירות אליך, עם הזמנה פשוטה בוואטסאפ.",
+    "הסיפור של Goalix — חנות חולצות כדורגל של קבוצות ונבחרות, עם הזמנה פשוטה בוואטסאפ.",
   alternates: { canonical: "/about" },
 };
 
 const VALUES = [
   {
     icon: Globe,
-    title: "חולצות נבחרות",
-    body: "אנחנו בוחרים חולצות של קבוצות ונבחרות — בית, חוץ ושלישית — ומביאים אותן ישירות אליכם.",
+    title: "קבוצות ונבחרות",
+    body: "חולצות של קבוצות ונבחרות — בית, חוץ ושלישית — לעונה הנוכחית, ישירות אליכם.",
   },
   {
     icon: Sparkles,
