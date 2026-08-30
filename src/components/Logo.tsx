@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { site } from "@/config/site";
 
 /**
  * Goalix brand mark — a "G + swoosh" monogram — plus the wordmark.
@@ -47,7 +48,7 @@ export function Logo({
         </span>
         {withTagline ? (
           <span className="mt-0.5 text-[10px] font-medium tracking-wide text-muted">
-            Smart Finds. Global Vibes.
+            {site.tagline}
           </span>
         ) : null}
       </span>

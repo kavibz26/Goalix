@@ -14,6 +14,22 @@ delete without owner approval.
   shopper-friendly empty/coming-soon state in the UI (never "TODO", a filename,
   or a source path shown to customers).
 
+## Done — real brand logo (owner-supplied)
+- [x] Owner supplied the final Goalix logo (violet "G + ball" mark + "GOALIX"
+      wordmark + "FOOTBALL IS YOURS", composed on black). Rasterised with `sharp`:
+  - `public/brand/goalix-logo-dark.png` — full lockup, shown in the dark Hero
+    (`mix-blend-screen` drops the black backdrop over the hero gradient)
+  - `src/app/icon.png` — favicon (mark on a rounded dark square)
+  - `src/app/apple-icon.png`, `public/icons/icon-192.png`, `icon-512.png` — PWA
+  - `src/app/opengraph-image.png` (+ `.alt.txt`) — link preview
+- [x] Deleted the SVG-approximation generators: `src/app/icon.svg`,
+      `apple-icon.tsx`, `opengraph-image.tsx`, `src/app/icons/*/route.ts`,
+      `src/lib/brand-icon.tsx`
+- [x] `site.tagline` → **"FOOTBALL IS YOURS"** (official slogan; kept English in
+      every branded spot: `Logo` microtext, footer, `/about`, OG)
+- [x] Header / footer keep the adaptive SVG `Logo` monogram (owner's choice — the
+      raster logo is black-backed, used only on dark surfaces: Hero + favicon)
+
 ## Done
 - [x] Scaffold Next.js 16 + TypeScript + Tailwind v4 (App Router, `src/`)
 - [x] Deps: clsx, lucide-react, next-themes (framer-motion removed — see below)
@@ -88,10 +104,9 @@ delete without owner approval.
       client `@/config/site` object); `.env.example` documents it; local-dev
       fallback `http://localhost:3000` — no fake production domain
 - [x] `/cart` removed from `sitemap.ts` (it is noindex)
-- [x] Goalix icons: `src/app/icon.svg` (favicon), `apple-icon.tsx`,
-      `/icons/icon-192.png` + `/icons/icon-512.png` (manifest, via `next/og`);
-      deleted the create-next-app `favicon.ico` and the 5 template SVGs in
-      `public/`
+- [x] Goalix icons (superseded by the real-logo pass above — now static PNGs
+      from the owner artwork): deleted the create-next-app `favicon.ico` and the
+      5 template SVGs in `public/`
 - [x] `public/images/README.md` → `IMAGES.md` at repo root (no longer served)
 - [x] Security headers in `next.config.ts` (nosniff, X-Frame-Options SAMEORIGIN,
       Referrer-Policy, Permissions-Policy, HSTS) + `poweredByHeader: false`
@@ -157,5 +172,5 @@ delete without owner approval.
 - [ ] Regenerate `IMAGES.md` checklist from the real data (`npm run images:manifest`)
 - [ ] Verify the WhatsApp order message end-to-end with a real multi-item cart
 - [ ] Lighthouse mobile pass (performance, a11y, SEO)
-- [ ] Swap the `opengraph-image` gradient / `brand-icon` monogram for real brand
-      artwork if the owner provides it
+- [x] Swap the `opengraph-image` gradient / `brand-icon` monogram for real brand
+      artwork — done (owner supplied the logo; see "Done — real brand logo")

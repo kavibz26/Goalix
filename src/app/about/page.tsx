@@ -4,6 +4,7 @@ import { Globe, HeartHandshake, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { site } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "אודות",
@@ -34,7 +35,7 @@ export default function AboutPage() {
   return (
     <Container className="py-10">
       <p className="text-sm font-semibold tracking-wide text-accent">
-        Smart Finds. Global Vibes.
+        {site.tagline}
       </p>
       <h1 className="mt-2 font-display text-4xl font-extrabold">הסיפור שלנו</h1>
       <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">

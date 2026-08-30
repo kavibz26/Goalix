@@ -30,6 +30,16 @@ export function Hero({ hasImage }: { hasImage: boolean }) {
       )}
 
       <div className="mx-auto flex min-h-[64vh] w-full max-w-6xl flex-col items-start justify-center gap-5 px-4 py-20 sm:px-6 sm:py-28">
+        <Image
+          src="/brand/goalix-logo-dark.png"
+          alt="Goalix — FOOTBALL IS YOURS"
+          width={984}
+          height={664}
+          priority
+          // The art is composed on pure black; `screen` drops that backdrop so
+          // the mark reads as lit-up over the hero's own dark gradient.
+          className="h-14 w-auto mix-blend-screen sm:h-20"
+        />
         <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold backdrop-blur">
           חולצות כדורגל · 2025/26
         </span>
