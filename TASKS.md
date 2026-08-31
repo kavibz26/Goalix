@@ -63,9 +63,12 @@ delete without owner approval.
 - [x] Polished coming-soon states (`ComingSoon`) on `/` and `/shop` while the
       catalog is empty; deleted `TodoNotice`; removed every customer-visible
       "TODO" / filename / source-path
-- [x] FAQ: answers describe only the on-site flow (spec-supported); every
-      owner-specific point (delivery times, return terms, payment methods, etc.)
-      is a neutral "יימסרו בתיאום ההזמנה" deferral — no invented policy. FAQ JSON-LD
+- [x] FAQ: 10 Q&As, all from owner-supplied text (sizes 6–XXL, not licensed /
+      inspired-by, name+number +10 ₪, shipping 15 ₪, delivery < 1 month,
+      cancel / return by contacting us, payment sorted via WhatsApp / SMS / email,
+      ordering steps, in-catalog only). Same `<details>` UI + FAQ JSON-LD.
+      (Earlier pass used neutral "יימסרו בתיאום ההזמנה" deferrals — replaced now
+      that the owner provided the facts.)
 - [x] Shipping & Returns: neutral "יימסרו בתיאום ההזמנה" copy only — no invented
       times / prices / return windows / conditions / payment methods / guarantees
 - [x] a11y: unique filter-control ids per instance (desktop vs mobile drawer);
@@ -154,11 +157,11 @@ delete without owner approval.
       (ships `[]`; homepage section stays hidden while empty).
 - [ ] **Images** — real kit photos at the paths referenced by `products.json`,
       plus `public/images/hero.jpg`. Missing → "תמונה בקרוב".
-- [ ] **Shipping & Returns / FAQ specifics** — if the owner wants concrete
-      delivery times, shipping prices, a return window/conditions or payment
-      methods published, provide that text (goes into
-      `src/app/shipping-returns/page.tsx` and the relevant FAQ answers). Until
-      then those points stay as neutral deferrals.
+- [ ] **Shipping & Returns page** — `src/app/shipping-returns/page.tsx` still
+      holds neutral "יימסרו בתיאום ההזמנה" copy. The owner has now given some
+      specifics via the FAQ (shipping 15 ₪, delivery < 1 month, cancel / return by
+      contacting us) — fold those into this page too when the owner confirms the
+      full return window / conditions.
 - [ ] **Social links** — Instagram / Facebook / TikTok in `src/config/site.ts`
       (nothing renders while empty).
 - [ ] **Production URL** — set `SITE_URL` (server-only) in the host's env at
