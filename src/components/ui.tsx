@@ -40,7 +40,7 @@ export function SectionHeader({
   return (
     <div className="mb-4 flex items-end justify-between gap-4">
       <h2 className="font-display text-2xl font-bold sm:text-3xl">
-        <span className="inline-block border-b-4 border-accent pb-1">{title}</span>
+        <span className="inline-block border-b-2 border-accent pb-1">{title}</span>
       </h2>
       {action}
     </div>
@@ -55,7 +55,7 @@ export function EmptyState({
   hint?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-surface px-6 py-12 text-center">
+    <div className="rounded-2xl border border-dashed border-border bg-surface px-6 py-12 text-center">
       <p className="font-semibold">{title}</p>
       {hint ? (
         <p className="mx-auto mt-1.5 max-w-sm text-sm leading-relaxed text-muted">

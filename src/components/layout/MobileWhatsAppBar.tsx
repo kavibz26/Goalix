@@ -26,7 +26,7 @@ export function MobileWhatsAppBar() {
         {hasItems ? (
           <span>הזמנה בוואטסאפ · {formatPrice(total)}</span>
         ) : (
-          <span>הזמנה בוואטסאפ</span>
+          <span>כתבו לנו בוואטסאפ</span>
         )}
       </a>
     </div>

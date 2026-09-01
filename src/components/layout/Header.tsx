@@ -65,7 +65,11 @@ export function Header() {
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
-          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {menuOpen ? (
+            <X className="h-5 w-5" aria-hidden />
+          ) : (
+            <Menu className="h-5 w-5" aria-hidden />
+          )}
         </button>
 
         <Link
@@ -103,7 +107,7 @@ export function Header() {
           aria-expanded={searchOpen}
           onClick={() => setSearchOpen((v) => !v)}
         >
-          <Search className="h-5 w-5" />
+          <Search className="h-5 w-5" aria-hidden />
         </button>
 
         <ThemeToggle />
@@ -117,7 +121,7 @@ export function Header() {
               : "עגלת קניות"
           }
         >
-          <ShoppingBag className="h-5 w-5" />
+          <ShoppingBag className="h-5 w-5" aria-hidden />
           {hydrated && count > 0 ? (
             <span className="absolute -end-1.5 -top-1.5 inline-flex min-w-5 items-center justify-center rounded-full bg-accent px-1 text-xs font-bold text-accent-contrast">
               {count}

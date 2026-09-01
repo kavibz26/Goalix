@@ -7,51 +7,54 @@
   --font-sans: var(--font-heebo), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-rubik), var(--font-heebo), ui-sans-serif, sans-serif;
 
-  /* Brand palette — violet / purple / magenta on deep night. */
-  --color-violet-50: #f5f3ff;
-  --color-violet-100: #ede9fe;
-  --color-violet-200: #ddd6fe;
-  --color-violet-300: #c4b5fd;
-  --color-violet-400: #a78bfa;
-  --color-violet-500: #8b5cf6;
-  --color-violet-600: #7c3aed;
-  --color-violet-700: #6d28d9;
-  --color-violet-800: #5b21b6;
-  --color-violet-900: #4c1d95;
+  /* Brand ramp — calm indigo / blue-violet. (Token name kept as `violet-*`
+     so components need no churn; the values are the indigo family.) */
+  --color-violet-50: #eef2ff;
+  --color-violet-100: #e0e7ff;
+  --color-violet-200: #c7d2fe;
+  --color-violet-300: #a5b4fc;
+  --color-violet-400: #818cf8;
+  --color-violet-500: #6366f1;
+  --color-violet-600: #4f46e5;
+  --color-violet-700: #4338ca;
+  --color-violet-800: #3730a3;
+  --color-violet-900: #312e81;
 
-  /* Secondary accent — used sparingly (deal badge, highlights). */
-  --color-magenta-400: #e879f9;
-  --color-magenta-500: #d946ef;
-  --color-magenta-600: #c026d3;
+  /* Secondary accent — rose, used sparingly (deal / "hot" badge only).
+     #e11d48 clears AA (5:1) against white for the badge label. */
+  --color-magenta-400: #fb7185;
+  --color-magenta-500: #e11d48;
+  --color-magenta-600: #be123c;
 
-  --color-night-700: #211c3a;
-  --color-night-800: #1a1730;
-  --color-night-900: #131022;
-  --color-night-950: #0b0916;
+  /* Deep-navy surface ramp — dark mode chrome + the hero backdrop. */
+  --color-night-700: #1e293b;
+  --color-night-800: #172033;
+  --color-night-900: #0f172a;
+  --color-night-950: #0b1120;
 }
 
 :root {
   --background: #ffffff;
-  --surface: #f5f4fb;
+  --surface: #f3f5fb;
   --surface-raised: #ffffff;
-  --foreground: #14121f;
-  --muted: #6b6880;
-  --border: #e6e3f2;
+  --foreground: #0f1729;
+  --muted: #57607a;
+  --border: #e3e7f1;
   --accent: var(--color-violet-600);
   --accent-strong: var(--color-violet-700);
   --accent-contrast: #ffffff;
 }
 
 .dark {
-  --background: #100e1c;
-  --surface: #1a1730;
-  --surface-raised: #221d3d;
-  --foreground: #ece9f7;
-  --muted: #a29dbb;
-  --border: #322c50;
+  --background: #0b1120;
+  --surface: #131c30;
+  --surface-raised: #1b263f;
+  --foreground: #e9edf7;
+  --muted: #9aa4bd;
+  --border: #2a3650;
   --accent: var(--color-violet-400);
   --accent-strong: var(--color-violet-300);
-  --accent-contrast: #1a1033;
+  --accent-contrast: #0b1120;
 }
 
 @theme inline {
@@ -76,6 +79,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 26%, transparent);
+}
+
+/* In-page anchor targets clear the sticky header when scrolled to. */
+[id] {
+  scroll-margin-top: 5rem;
 }
 
 /* Consistent keyboard-focus ring on every interactive element. */

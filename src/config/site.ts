@@ -15,15 +15,18 @@ export const site = {
   lang: "he" as const,
   currency: "₪",
 
-  /** WhatsApp for orders. 0559651785 -> international format for wa.me links. */
+  // The number customers see is the local `0559651785`. `whatsappNumber` /
+  // `phoneIntl` / `smsHref` keep the E.164 `972…` form because wa.me links,
+  // `sms:` and schema.org `telephone` require international format to work —
+  // those values are never shown to customers.
   whatsappNumber: "972559651785",
-  whatsappDisplay: "055-965-1785",
+  whatsappDisplay: "0559651785",
 
   contact: {
     /** Same line handles WhatsApp and SMS. */
     phone: "0559651785",
     phoneIntl: "972559651785",
-    phoneDisplay: "055-965-1785",
+    phoneDisplay: "0559651785",
     smsHref: "sms:+972559651785",
     emails: ["lavibz123@gmail.com"],
   },

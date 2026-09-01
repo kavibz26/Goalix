@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Hero } from "@/components/home/Hero";
+import { WhyGoalix } from "@/components/home/WhyGoalix";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { HomeCta } from "@/components/home/HomeCta";
 import { ProductRail } from "@/components/home/ProductRail";
 import { TeamCard } from "@/components/product/TeamCard";
 import { Container, EmptyState, SectionHeader } from "@/components/ui";
 import { ComingSoon } from "@/components/ComingSoon";
 import { Reveal } from "@/components/Reveal";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { whatsappUrl } from "@/lib/whatsapp";
 import { publicFileExists } from "@/lib/serverImages";
 import {
   getBestsellers,
@@ -25,10 +26,10 @@ export default function HomePage() {
   const catalogReady = hasCatalog();
 
   return (
-    <div className="flex flex-col gap-14 pb-10">
+    <div className="flex flex-col gap-16 pb-12 sm:gap-20">
       <Hero hasImage={publicFileExists("/images/hero.jpg")} />
 
-      <Container className="flex flex-col gap-14">
+      <Container className="flex flex-col gap-16 sm:gap-20">
         {!catalogReady ? (
           <Reveal>
             <ComingSoon />
@@ -46,7 +47,7 @@ export default function HomePage() {
                         className="inline-flex items-center gap-1 text-sm font-semibold text-accent"
                       >
                         לכל החולצות{" "}
-                        <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                        <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
                       </Link>
                     }
                   />
@@ -74,7 +75,7 @@ export default function HomePage() {
                       className="inline-flex items-center gap-1 text-sm font-semibold text-accent"
                     >
                       לכל המבצעים{" "}
-                      <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                      <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
                     </Link>
                   }
                 />
@@ -113,7 +114,7 @@ export default function HomePage() {
                       className="inline-flex items-center gap-1 text-sm font-semibold text-accent"
                     >
                       צפייה בכל החולצות
-                      <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                      <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
                     </Link>
                   }
                 />
@@ -131,31 +132,17 @@ export default function HomePage() {
           </>
         )}
 
-        {catalogReady ? (
         <Reveal>
-          <div className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-surface p-8 text-center">
-            <h2 className="font-display text-2xl font-bold">
-              לא בטוחים מה לבחור?
-            </h2>
-            <p className="max-w-md text-sm text-muted">
-              דברו איתנו בוואטסאפ ונעזור לכם למצוא את החולצה, המידה והגרסה
-              המתאימה.
-            </p>
-            <div className="flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
-              <Link
-                href="/shop"
-                className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-accent px-6 font-semibold text-accent-contrast sm:w-auto"
-              >
-                צפייה בכל החולצות
-              </Link>
-              <WhatsAppButton
-                href={whatsappUrl("היי Goalix, אשמח לעזרה בבחירת חולצה")}
-                className="w-full sm:w-auto"
-              />
-            </div>
-          </div>
+          <WhyGoalix />
         </Reveal>
-        ) : null}
+
+        <Reveal>
+          <HowItWorks />
+        </Reveal>
+
+        <Reveal>
+          <HomeCta catalogReady={catalogReady} />
+        </Reveal>
       </Container>
     </div>
   );

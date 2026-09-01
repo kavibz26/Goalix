@@ -23,15 +23,22 @@ export default function ShippingReturnsPage() {
         <section className="rounded-2xl border border-border bg-surface-raised p-5">
           <h2 className="text-lg font-semibold">משלוחים</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            פרטי המשלוח — אזור, עלות וזמן אספקה — יימסרו בתיאום ההזמנה בוואטסאפ.
+            עלות המשלוח היא 15 ₪. ההזמנה צפויה להגיע בתוך פחות מחודש.
+          </p>
+        </section>
+
+        <section className="rounded-2xl border border-border bg-surface-raised p-5">
+          <h2 className="text-lg font-semibold">הוספת שם ומספר</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            אפשר להוסיף שם ומספר לחולצה בתוספת של 10 ₪.
           </p>
         </section>
 
         <section className="rounded-2xl border border-border bg-surface-raised p-5">
           <h2 className="text-lg font-semibold">החלפות והחזרות</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            תנאי ההחלפה וההחזרה יימסרו בתיאום ההזמנה. לכל שאלה או בקשה — פנו אלינו
-            בוואטסאפ, ב-SMS או באימייל.
+            אפשר לבטל הזמנה או לבקש החזרה. במקרה של החזרה יש ליצור איתנו קשר
+            בוואטסאפ, ב-SMS או באימייל כדי לקבל את פרטי התהליך.
           </p>
         </section>
       </div>
