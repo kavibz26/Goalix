@@ -6,7 +6,7 @@ import { whatsappUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "משלוחים והחזרות",
-  description: "איך עובדים המשלוחים, ההחלפות וההחזרות ב-Goalix.",
+  description: "פרטי המשלוחים ומדיניות הביטול וההחזרה של Goalix.",
   alternates: { canonical: "/shipping-returns" },
 };
 
@@ -35,10 +35,14 @@ export default function ShippingReturnsPage() {
         </section>
 
         <section className="rounded-2xl border border-border bg-surface-raised p-5">
-          <h2 className="text-lg font-semibold">החלפות והחזרות</h2>
+          <h2 className="text-lg font-semibold">ביטול והחזרה</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            אפשר לבטל הזמנה או לבקש החזרה. במקרה של החזרה יש ליצור איתנו קשר
-            בוואטסאפ, ב-SMS או באימייל כדי לקבל את פרטי התהליך.
+            חולצה עם שם ומספר מיוצרת במיוחד עבורכם, ולכן אינה ניתנת לביטול או
+            להחזרה. חולצה ללא הדפסה אישית ניתן לבטל בתוך 14 יום מקבלת ההזמנה,
+            כשהיא חדשה ולא נעשה בה שימוש — ייתכנו דמי ביטול לפי חוק (עד 5% ממחיר
+            הפריט או עד 100 ₪, לפי הנמוך) ודמי המשלוח בחזרה על הלקוח. פריט פגום או
+            שאינו תואם לתיאור — נחליף אותו או נזכה אתכם במלואו, ללא עלות. לביטול
+            או לכל שאלה כתבו לנו בוואטסאפ, ב-SMS או באימייל.
           </p>
         </section>
       </div>

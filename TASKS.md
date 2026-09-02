@@ -65,12 +65,18 @@ delete without owner approval.
       "TODO" / filename / source-path
 - [x] FAQ: 10 Q&As, all from owner-supplied text (sizes 6–XXL, not licensed /
       inspired-by, name+number +10 ₪, shipping 15 ₪, delivery < 1 month,
-      cancel / return by contacting us, payment sorted via WhatsApp / SMS / email,
-      ordering steps, in-catalog only). Same `<details>` UI + FAQ JSON-LD.
-      (Earlier pass used neutral "יימסרו בתיאום ההזמנה" deferrals — replaced now
-      that the owner provided the facts.)
-- [x] Shipping & Returns: neutral "יימסרו בתיאום ההזמנה" copy only — no invented
-      times / prices / return windows / conditions / payment methods / guarantees
+      payment sorted via WhatsApp / SMS / email, ordering steps, in-catalog only).
+      Same `<details>` UI + FAQ JSON-LD. (Earlier pass used neutral "יימסרו
+      בתיאום ההזמנה" deferrals — replaced now that the owner provided the facts.)
+- [x] Cancellation / returns wording (FAQ Q#6 + `/shipping-returns`) aligned to
+      חוק הגנת הצרכן §14ג–14ה: personalised shirts (name/number) = made-to-order,
+      no cancel/return (§14ג(ד)); plain shirts = 14-day cancellation from receipt,
+      unused, statutory fee up to 5% / ₪100 (lower), buyer pays return shipping;
+      defective / not-as-described = full refund or replacement, no cost. The
+      owner-approved blanket "לא." was dropped — §36 makes the statutory right
+      non-waivable. (Owner should still have the public wording lawyer-checked.)
+- [x] Shipping & Returns: shipping 15 ₪ + delivery < 1 month + name/number 10 ₪
+      + the §14ג–14ה cancellation/return policy above. No invented conditions.
 - [x] a11y: unique filter-control ids per instance (desktop vs mobile drawer);
       collapsed mobile menu `inert` + `aria-hidden`; header icon buttons and
       cart remove button → 44px; drawer close button 44px + labelled
@@ -157,11 +163,11 @@ delete without owner approval.
       (ships `[]`; homepage section stays hidden while empty).
 - [ ] **Images** — real kit photos at the paths referenced by `products.json`,
       plus `public/images/hero.jpg`. Missing → "תמונה בקרוב".
-- [ ] **Shipping & Returns page** — `src/app/shipping-returns/page.tsx` still
-      holds neutral "יימסרו בתיאום ההזמנה" copy. The owner has now given some
-      specifics via the FAQ (shipping 15 ₪, delivery < 1 month, cancel / return by
-      contacting us) — fold those into this page too when the owner confirms the
-      full return window / conditions.
+- [ ] **Shipping & Returns page** — now carries the owner facts (shipping 15 ₪,
+      delivery < 1 month, name/number 10 ₪) and a §14ג–14ה-based cancellation /
+      return policy. Still open: owner to confirm whether a cancellation fee is
+      actually charged (page says "ייתכנו"), and to have the public wording
+      lawyer-reviewed before the real launch.
 - [ ] **Social links** — Instagram / Facebook / TikTok in `src/config/site.ts`
       (nothing renders while empty).
 - [ ] **Production URL** — set `SITE_URL` (server-only) in the host's env at
